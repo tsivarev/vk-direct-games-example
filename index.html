@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css"></link>
-    <title>Title</title>
+    <title>Snake</title>
 </head>
 <body style="width: 100%; height: 100%; margin: 0; padding: 0;">
     <div id="startView" class="startView">
-        <button>Start</button>
+        <div class="startGameButtonWrapper">
+            <button type="button" class="startGameButton" onclick="startGame()">Start Game</button>
+        </div>
     </div>
     <canvas id="gameCanvas" class="gameCanvas"></canvas>
     <!--<div id="canvas" style="border:1px solid #000000;  position: fixed;-->

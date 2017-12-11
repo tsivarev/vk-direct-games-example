@@ -9,3 +9,8 @@ function resizeCanvas() {
     canvas.height = window.innerHeight / 2;
 }
 resizeCanvas();
+
+function startGame() {
+    document.getElementById('startView').style.display = "none";
+    document.getElementById('gameCanvas').style.display = "block";
+}

@@ -1,11 +1,20 @@
 .startView {
     background-color: blue;
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     position: fixed;
 }
 
 .gameCanvas {
     border: 1px solid #000000;
     display: none;
+}
+
+.startGameButton {
+    position: absolute;
+    top: 50%;
+}
+
+.startGameButtonWrapper {
+    text-align: center;
 }
