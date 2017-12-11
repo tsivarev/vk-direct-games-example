@@ -1,0 +1,1 @@
+# vk-direct-games-example
