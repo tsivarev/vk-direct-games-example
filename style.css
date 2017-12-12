@@ -11,8 +11,18 @@
 }
 
 .startGameButton {
+    /*margin: auto;*/
+    /*display: block;*/
+    /*margin-top: 100%;*/
+    border: 1px outset blue;
+    background-color: lightBlue;
+    height: 50px;
+    width: 100px;
+    cursor: pointer;
+
     position: absolute;
     top: 50%;
+    margin-left: -4.55em;
 }
 
 .startGameButtonWrapper {
