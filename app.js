@@ -23,18 +23,18 @@ function handleTouchMove(evt) {
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
             /* left swipe */
-            document.getElementById("startView").style.backgroundColor = "lightblue";
+            document.getElementById("gameCanvas").style.backgroundColor = "lightblue";
         } else {
             /* right swipe */
-            document.getElementById("startView").style.backgroundColor = "red";
+            document.getElementById("gameCanvas").style.backgroundColor = "red";
         }
     } else {
         if ( yDiff > 0 ) {
             /* up swipe */
-            document.getElementById("startView").style.backgroundColor = "black";
+            document.getElementById("gameCanvas").style.backgroundColor = "black";
         } else {
             /* down swipe */
-            document.getElementById("startView").style.backgroundColor = "white";
+            document.getElementById("gameCanvas").style.backgroundColor = "white";
         }
     }
     /* reset values */
