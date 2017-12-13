@@ -1,3 +1,4 @@
+/* listen to swipes */
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
 
@@ -49,19 +50,14 @@ var context = canvas.getContext('2d');
 window.addEventListener('resize', resizeCanvas, false);
 
 function resizeCanvas() {
-    canvas.width = window.innerWidth / 2;
+    canvas.width = window.innerWidth;
     canvas.height = window.innerHeight / 2;
 }
 resizeCanvas();
 
-// if (canvas.getContext) {
-//     var ctx = canvas.getContext('2d');
-//     // drawing code here
-// } else {
-//     // canvas-unsupported code here
-// }
-
 function startGame() {
     document.getElementById('startView').style.display = "none";
     document.getElementById('gameCanvas').style.display = "block";
+
+    drawModule.start();
 }
