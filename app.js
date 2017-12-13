@@ -21,26 +21,34 @@ function handleTouchMove(evt) {
     var xDiff = xDown - xUp;
     var yDiff = yDown - yUp;
 
-    var dir = "right";
+    var dir = drawModule.getDirection();
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) { /*most significant*/
         if ( xDiff > 0 ) {
             /* left swipe */
-            dir = "left";
+            if (dir !== "right") {
+                dir = "left";
+            }
         } else {
             /* right swipe */
-            dir = "right";
+            if (dir !== "left") {
+                dir = "right";
+            }
         }
     } else {
         if ( yDiff > 0 ) {
             /* up swipe */
-            dir = "up";
+            if (dir !== "down") {
+                dir = "up";
+            }
         } else {
             /* down swipe */
-            dir = "down";
+            if (dir !== "up") {
+                dir = "down";
+            }
         }
     }
     /* reset values */
-    drawModule.changeDirection(dir);
+    drawModule.setDirection(dir);
     xDown = null;
     yDown = null;
 };
@@ -53,7 +61,7 @@ window.addEventListener('resize', resizeCanvas, false);
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight / 2;
+    canvas.height = window.innerHeight;
 }
 resizeCanvas();
 
