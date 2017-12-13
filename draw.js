@@ -1,7 +1,7 @@
 var drawModule = (function() {
     /* game properties */
-    var w = 400;
-    var h = 400;
+    var w = 800;
+    var h = 800;
     var score = 0;
     var blockSize = 40;
     var snake = [];
@@ -101,11 +101,18 @@ var drawModule = (function() {
         }
     };
 
+    var changeDirection = function(dir) {
+        direction = dir;
+    };
+
     var start = function() {
         createSnake();
         generateApple();
         gameloop = setInterval(drawGame, 320);
     };
 
-    return {start : start};
+    return {
+        start : start,
+        changeDirection: changeDirection
+    };
 }());

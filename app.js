@@ -21,24 +21,26 @@ function handleTouchMove(evt) {
     var xDiff = xDown - xUp;
     var yDiff = yDown - yUp;
 
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+    var dir = "right";
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) { /*most significant*/
         if ( xDiff > 0 ) {
             /* left swipe */
-            document.getElementById("gameCanvas").style.backgroundColor = "lightblue";
+            dir = "left";
         } else {
             /* right swipe */
-            document.getElementById("gameCanvas").style.backgroundColor = "red";
+            dir = "right";
         }
     } else {
         if ( yDiff > 0 ) {
             /* up swipe */
-            document.getElementById("gameCanvas").style.backgroundColor = "black";
+            dir = "up";
         } else {
             /* down swipe */
-            document.getElementById("gameCanvas").style.backgroundColor = "white";
+            dir = "down";
         }
     }
     /* reset values */
+    drawModule.changeDirection(dir);
     xDown = null;
     yDown = null;
 };
