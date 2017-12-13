@@ -20,14 +20,21 @@ var drawModule = (function() {
     };
 
     var drawSnakeBlock = function(x, y, type) {
+        // context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+        // context.strokeStyle = "blue";
+        // context.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
+
+        context.beginPath();
+        context.arc(x * blockSize, y * blockSize, blockSize / 2, 0, 2 * Math.PI, false);
         if (type === "head") {
             context.fillStyle = "blue";
         } else {
             context.fillStyle = "lightblue";
         }
-        context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
-        context.strokeStyle = "blue";
-        context.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
+        context.fill();
+        context.lineWidth = 1;
+        context.strokeStyle = '#003300';
+        context.stroke();
     };
 
     var drawApple = function(x, y) {
@@ -144,7 +151,7 @@ var drawModule = (function() {
         updateProperties();
         createSnake();
         generateApple();
-        gameloop = setInterval(drawGame, 130);
+        gameloop = setInterval(drawGame, 200);
     };
 
     return {
