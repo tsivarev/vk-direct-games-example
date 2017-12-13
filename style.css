@@ -1,11 +1,7 @@
-html {
-    overflow: hidden;
-    height: 100%;
-}
-
+html,
 body {
-    height: 100%;
-    overflow: auto;
+    position: fixed;
+    overflow: hidden;
 }
 
 .startView {
