@@ -9,16 +9,22 @@ var drawModule = (function() {
     var direction;
 
     var updateProperties = function() {
-        w = 850;
-        h = 850;
+        w = 900;
+        h = 1500;
+        // w = 400;
+        // h = 400;
         score = 0;
         blockSize = 50;
         snake = [];
         direction = "right";
     };
 
-    var drawSnakeBlock = function(x, y) {
-        context.fillStyle = "lightblue";
+    var drawSnakeBlock = function(x, y, type) {
+        if (type === "head") {
+            context.fillStyle = "blue";
+        } else {
+            context.fillStyle = "lightblue";
+        }
         context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
         context.strokeStyle = "blue";
         context.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
@@ -34,7 +40,8 @@ var drawModule = (function() {
     var drawScore = function() {
         var scoreText = "Score: " + score;
         context.fillStyle = "black";
-        context.fillText(score_text, 145, h - 5);
+        context.font = "30px Arial";
+        context.fillText(scoreText, w / 2 - 60, h - 5);
     };
 
     var drawGame = function() {
@@ -42,6 +49,7 @@ var drawModule = (function() {
         context.fillRect(0, 0, w, h);
         context.strokeStyle = "black";
         context.strokeRect(0, 0, w, h);
+        drawScore();
 
         var snakeX = snake[0].x;
         var snakeY = snake[0].y;
@@ -71,13 +79,15 @@ var drawModule = (function() {
 
         if (snakeX === apple.x && snakeY === apple.y) {
             score++;
+            drawScore();
             generateApple();
         } else {
             snake.pop();
         }
         snake.unshift({x: snakeX, y: snakeY});
-        for (var i = 0, len = snake.length; i < len; i++) {
-            drawSnakeBlock(snake[i].x, snake[i].y);
+        drawSnakeBlock(snake[0].x, snake[0].y, "head");
+        for (var i = 1, len = snake.length; i < len; i++) {
+            drawSnakeBlock(snake[i].x, snake[i].y, "body");
         }
 
         drawApple(apple.x, apple.y);
@@ -85,7 +95,7 @@ var drawModule = (function() {
 
     var checkCrash = function (x, y) {
         for (var i = 0, len = snake.length; i < len; i++) {
-            if (snake[0].x === x && snake[0].y === y) {
+            if (snake[i].x === x && snake[i].y === y) {
                 return true;
             }
         }
@@ -109,12 +119,16 @@ var drawModule = (function() {
           x: getRandomInt(0, w / blockSize),
           y: getRandomInt(0, h / blockSize)
         };
+        console.log(" ");
+        console.log(apple.x + " " + apple.y);
+        console.log(snake);
 
         while(checkCrash(apple.x, apple.y)) {
             apple = {
                 x: getRandomInt(0, w / blockSize),
                 y: getRandomInt(0, h / blockSize)
             };
+            console.log("collision: " + apple.x + " " + apple.y);
         }
     };
 
@@ -130,7 +144,7 @@ var drawModule = (function() {
         updateProperties();
         createSnake();
         generateApple();
-        gameloop = setInterval(drawGame, 220);
+        gameloop = setInterval(drawGame, 130);
     };
 
     return {

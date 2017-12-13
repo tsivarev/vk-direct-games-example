@@ -51,7 +51,49 @@ function handleTouchMove(evt) {
     drawModule.setDirection(dir);
     xDown = null;
     yDown = null;
-};
+}
+
+
+
+
+// document.onkeydown = function(event) {
+//
+//     keyCode = window.event.keyCode;
+//     keyCode = event.keyCode;
+//
+//     var direction = drawModule.getDirection();
+//     switch(keyCode) {
+//
+//         case 37:
+//             if (direction != 'right') {
+//                 direction = 'left';
+//             }
+//             break;
+//
+//         case 39:
+//             if (direction != 'left') {
+//                 direction = 'right';
+//             }
+//             break;
+//
+//         case 38:
+//             if (direction != 'down') {
+//                 direction = 'up';
+//             }
+//             break;
+//
+//         case 40:
+//             if (direction != 'up') {
+//                 direction = 'down';
+//             }
+//             break;
+//     }
+//     drawModule.setDirection(direction);
+// };
+
+
+
+
 
 var canvas = document.getElementById('gameCanvas');
 var context = canvas.getContext('2d');
@@ -60,6 +102,8 @@ var context = canvas.getContext('2d');
 window.addEventListener('resize', resizeCanvas, false);
 
 function resizeCanvas() {
+    // canvas.width = window.innerWidth / 5 * 4;
+    // canvas.height = window.innerHeight / 4 * 3;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
