@@ -1,3 +1,13 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+}
+
 .startView {
     background-color: blue;
     width: 100%;
