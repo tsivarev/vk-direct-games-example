@@ -97,21 +97,21 @@ document.onkeydown = function(event) {
 
 
 
-
-
 var canvas = document.getElementById('gameCanvas');
 var context = canvas.getContext('2d');
 
-// resize the canvas to fill browser window dynamically
-window.addEventListener('resize', resizeCanvas, false);
-
-function resizeCanvas() {
-    // canvas.width = window.innerWidth / 5 * 4;
-    // canvas.height = window.innerHeight / 4 * 3;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
+// // resize the canvas to fill browser window dynamically
+// window.addEventListener('resize', resizeCanvas, false);
+//
+// function resizeCanvas() {
+//     // canvas.width = window.innerWidth / 5 * 4;
+//     // canvas.height = window.innerHeight / 4 * 3;
+//     canvas.style.marginLeft = ;
+//     canvas.style.marginTop = ;
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+// }
+// resizeCanvas();
 
 function startGame() {
     document.getElementById('startView').style.display = "none";

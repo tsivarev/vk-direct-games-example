@@ -1,5 +1,7 @@
 var drawModule = (function() {
     /* game properties */
+    const wBlocks = 18;
+    const hBlocks = 30;
     var w;
     var h;
     var score;
@@ -11,12 +13,18 @@ var drawModule = (function() {
     var oldScore;
 
     var updateProperties = function() {
-        w = 900;
-        h = 1500;
+        const innerWidth = window.innerWidth;
+        const innerHeight = window.innerHeight;
+        blockSize = Math.min(innerWidth / wBlocks, innerHeight / hBlocks);
+        w = wBlocks * blockSize;
+        h = hBlocks * blockSize;
+        canvas.width = w;
+        canvas.height = h;
+        canvas.style.marginLeft = (innerWidth - w) / 2;
+        canvas.style.marginTop = (innerHeight - h) / 2;
         // w = 800;
         // h = 800;
         score = 0;
-        blockSize = 50;
         // blockSize = 40;
         snake = [];
         direction = "right";
