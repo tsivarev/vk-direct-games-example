@@ -1,29 +1,12 @@
-var onlongtouch;
-var timer, lockTimer;
-var touchduration = 500; //length of time we want the user to touch before we do something
-
-function touchstart(e) {
-    e.preventDefault();
-    if(lockTimer){
-        return;
-    }
-    timer = setTimeout(onlongtouch, touchduration);
-    lockTimer = true;
-}
-
-function touchend() {
-    //stops short touches from firing the event
-    if (timer){
-        clearTimeout(timer); // clearTimeout, not cleartimeout..
-        lockTimer = false;
-    }
-}
-
-onlongtouch = function() {
-    document.getElementById('start').innerText+='ping\n';
-};
-
-
+const right = "right";
+const left = "left";
+const up = "up";
+const down = "down";
+const px = "px";
+const wBlocks = 18;
+const hBlocks = 25;
+const innerWidth = window.innerWidth;
+const innerHeight = window.innerHeight;
 
 /* listen to swipes */
 document.addEventListener('touchstart', handleTouchStart, false);
@@ -35,7 +18,7 @@ var yDown = null;
 function handleTouchStart(evt) {
     xDown = evt.touches[0].clientX;
     yDown = evt.touches[0].clientY;
-};
+}
 
 function handleTouchMove(evt) {
     if (!xDown || !yDown) {
@@ -49,113 +32,44 @@ function handleTouchMove(evt) {
     var yDiff = yDown - yUp;
 
     var dir = drawModule.getCurDirection();
-    if (Math.abs(xDiff) > Math.abs(yDiff)) { /*most significant*/
+    if (Math.abs(xDiff) > Math.abs(yDiff)) { /* most significant */
         if (xDiff > 0) {
             /* left swipe */
-            if (drawModule.getCurDirection() !== "right") {
-                dir = "left";
+            if (drawModule.getCurDirection() !== right) {
+                dir = left;
             }
         } else {
             /* right swipe */
-            if (drawModule.getCurDirection() !== "left") {
-                dir = "right";
+            if (drawModule.getCurDirection() !== left) {
+                dir = right;
             }
         }
     } else {
         if (yDiff > 0) {
             /* up swipe */
-            if (drawModule.getCurDirection() !== "down") {
-                dir = "up";
+            if (drawModule.getCurDirection() !== down) {
+                dir = up;
             }
         } else {
             /* down swipe */
-            if (drawModule.getCurDirection() !== "up") {
-                dir = "down";
+            if (drawModule.getCurDirection() !== up) {
+                dir = down;
             }
         }
     }
-    /* reset values */
     drawModule.setDirection(dir);
+
     xDown = null;
     yDown = null;
 }
 
-
-
-
-document.onkeydown = function(event) {
-
-    keyCode = window.event.keyCode;
-    keyCode = event.keyCode;
-
-    var direction = drawModule.getCurDirection();
-    switch(keyCode) {
-
-        case 32:
-            gameloop = clearInterval(gameloop);
-            gameloop = setInterval(drawModule.drawGame, 90);
-            break;
-        case 37:
-            if (drawModule.getCurDirection() !== 'right') {
-                direction = 'left';
-            }
-            break;
-
-        case 39:
-            if (drawModule.getCurDirection() !== 'left') {
-                direction = 'right';
-            }
-            break;
-
-        case 38:
-            if (drawModule.getCurDirection() !== 'down') {
-                direction = 'up';
-            }
-            break;
-
-        case 40:
-            if (drawModule.getCurDirection() !== 'up') {
-                direction = 'down';
-            }
-            break;
-    }
-    drawModule.setDirection(direction);
-};
-
-
-
-var canvas = document.getElementById('gameCanvas');
-var context = canvas.getContext('2d');
-
-// // resize the canvas to fill browser window dynamically
-// window.addEventListener('resize', resizeCanvas, false);
-//
-// function resizeCanvas() {
-//     // canvas.width = window.innerWidth / 5 * 4;
-//     // canvas.height = window.innerHeight / 4 * 3;
-//     canvas.style.marginLeft = ;
-//     canvas.style.marginTop = ;
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-// }
-// resizeCanvas();
+var canvas = document.getElementById("gameCanvas");
+var context = canvas.getContext("2d");
 
 function startGame() {
-    document.getElementById('startView').style.display = "none";
-    document.getElementById('gameCanvas').style.display = "block";
+    document.getElementById("startView").style.display = "none";
+    document.getElementById("gameCanvas").style.display = "block";
 
     drawModule.start();
 }
 
-var isPause = false;
-function pauseGame() {
-    if (!isPause) {
-        isPause = true;
-        document.getElementById('pauseButton').innerHTML = "Play";
-        gameloop = clearInterval(gameloop);
-    } else {
-        isPause = false;
-        document.getElementById('pauseButton').innerHTML = "Pause";
-        gameloop = setInterval(drawModule.drawGame, 180);
-    }
-}

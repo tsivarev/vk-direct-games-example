@@ -1,9 +1,5 @@
-var drawModule = (function() {
+var drawModule = (function () {
     /* game properties */
-    const wBlocks = 18;
-    const hBlocks = 25;
-    const innerWidth = window.innerWidth;
-    const innerHeight = window.innerHeight;
     var w;
     var h;
     var score;
@@ -15,27 +11,23 @@ var drawModule = (function() {
     var curDirection;
     var oldScore;
 
-    var updateProperties = function() {
+    var updateProperties = function () {
         blockSize = Math.min(innerWidth / (wBlocks + 1), innerHeight / (hBlocks + 1));
         w = wBlocks * blockSize;
         h = hBlocks * blockSize;
         canvas.width = w;
         canvas.height = h;
-        // scoreSize = (innerHeight - h) / 4;
-        canvas.style.marginLeft = (innerWidth - w) / 2 + "px";
-        canvas.style.marginTop = "15px";
-        // w = 800;
-        // h = 800;
+        canvas.style.marginLeft = (innerWidth - w) / 2 + px;
         score = 0;
-        // blockSize = 40;
         snake = [];
-        direction = "right";
+        direction = right;
         curDirection = direction;
     };
 
-    var drawSnakeBlock = function(x, y, type) {
+    var drawSnakeBlock = function (x, y, type) {
         context.beginPath();
-        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
+        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
+            blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
         if (type === "head") {
             context.fillStyle = "#5a76b5";
         } else {
@@ -47,9 +39,10 @@ var drawModule = (function() {
         context.stroke();
     };
 
-    var drawApple = function(x, y) {
+    var drawApple = function (x, y) {
         context.beginPath();
-        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
+        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
+            blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
         context.fillStyle = "#ffcbcb";
         context.fill();
         context.lineWidth = 1;
@@ -57,57 +50,37 @@ var drawModule = (function() {
         context.stroke();
     };
 
-    var drawScore = function() {
+    var drawScore = function () {
         var scoreEl = document.getElementById("scoreLabel");
         scoreEl.style.display = "inline";
-        scoreEl.style.fontSize = (scoreSize) + "px";
-        scoreEl.style.marginLeft = (innerWidth / 2 - scoreSize * 2.85) + "px";
+        scoreEl.style.fontSize = (scoreSize) + px;
+        scoreEl.style.marginLeft = (innerWidth / 2 - scoreSize * 2.85) + px;
         scoreEl.innerHTML = "Score: " + score;
-
-        // var scoreText = "Score: " + oldScore;
-        // context.fillStyle = "white";
-        // context.font = "30px Arial";
-        // context.fillText(scoreText, w / 2 - 60, h + 35);
-        //
-        // var scoreText = "Score: " + score;
-        // context.fillStyle = "black";
-        // context.font = "30px Arial";
-        // context.fillText(scoreText, w / 2 - 60, h + 35);
     };
 
-    var drawPauseButton = function() {
-        var pauseButton = document.getElementById('pauseButton');
-        pauseButton.style.display = "inline";
-        pauseButton.style.marginRight = ((innerWidth - w) / 2 - 2) + "px";
-        pauseButton.style.height = scoreSize * 1.5 + "px";
-        pauseButton.style.width = scoreSize * 2.5 + "px";
-        pauseButton.style.fontSize = scoreSize / 3 * 2 + "px";
-    };
-
-    var drawGame = function() {
+    var drawGame = function () {
         var snakeX = snake[0].x;
         var snakeY = snake[0].y;
 
-        switch(direction) {
-            case "right":
+        switch (direction) {
+            case right:
                 snakeX++;
                 break;
-            case "left":
+            case left:
                 snakeX--;
                 break;
-            case "down":
+            case down:
                 snakeY++;
                 break;
-            case "up":
+            case up:
                 snakeY--;
                 break;
         }
 
         if (snakeX === -1 || snakeY === -1 || snakeX * blockSize === w || snakeY * blockSize === h
             || checkCrash(snakeX, snakeY)) {
-            document.getElementById('startView').style.display = "inline";
-            document.getElementById('gameCanvas').style.display = "none";
-            document.getElementById('pauseButton').style.display = "block";
+            document.getElementById("startView").style.display = "inline";
+            document.getElementById("gameCanvas").style.display = "none";
             oldScore = score;
             gameloop = clearInterval(gameloop);
             return;
@@ -131,7 +104,7 @@ var drawModule = (function() {
         drawApple(apple.x, apple.y);
     };
 
-    var checkCrash = function(x, y) {
+    var checkCrash = function (x, y) {
         for (var i in snake) {
             if (snake[i].x === x && snake[i].y === y) {
                 return true;
@@ -140,24 +113,24 @@ var drawModule = (function() {
         return false;
     };
 
-    var createSnake = function() {
+    var createSnake = function () {
         var length = 3;
         for (var i = length - 1; i >= 0; i--) {
             snake.push({x: i, y: 0});
         }
     };
 
-    var getRandomInt = function(min, max) {
+    var getRandomInt = function (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     };
 
     var generateApple = function () {
         apple = {
-          x: getRandomInt(0, w / blockSize),
-          y: getRandomInt(0, h / blockSize)
+            x: getRandomInt(0, w / blockSize),
+            y: getRandomInt(0, h / blockSize)
         };
 
-        while(checkCrash(apple.x, apple.y)) {
+        while (checkCrash(apple.x, apple.y)) {
             apple = {
                 x: getRandomInt(0, w / blockSize),
                 y: getRandomInt(0, h / blockSize)
@@ -165,29 +138,27 @@ var drawModule = (function() {
         }
     };
 
-    var setDirection = function(dir) {
+    var setDirection = function (dir) {
         direction = dir;
     };
 
-    var getCurDirection = function() {
+    var getCurDirection = function () {
         return curDirection;
     };
 
-    var start = function() {
+    var start = function () {
         updateProperties();
         createSnake();
         generateApple();
         context.fillStyle = "#e8eaf2";
         context.fillRect(0, 0, w, h);
         drawScore();
-        drawPauseButton();
         gameloop = setInterval(drawGame, 180);
     };
 
     return {
-        start : start,
+        start: start,
         setDirection: setDirection,
-        drawGame: drawGame,
         getCurDirection: getCurDirection
     };
 }());

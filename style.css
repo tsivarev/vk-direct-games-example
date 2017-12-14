@@ -4,6 +4,13 @@ body {
     overflow: hidden;
 }
 
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .startView {
     background-color: #5a76b5;
     width: 100%;
@@ -14,6 +21,7 @@ body {
 .gameCanvas {
     border: 1px solid #000000;
     display: none;
+    margin-top: 15px;
 }
 
 .startGameButton {
@@ -21,7 +29,6 @@ body {
     background-color: #ffcbcb;
     height: 100px;
     width: 200px;
-    /*cursor: pointer;*/
     font-size: 30px;
     color: #2f416a;
     position: absolute;
@@ -33,25 +40,15 @@ body {
     text-align: center;
 }
 
-.scoreLabel {
-    display: none;
-    vertical-align: middle;
-    line-height: 10px;
-    float: left;
-    margin-top: 40px;
-    color: #5a76b5;
+.scoreLabelWrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.pauseButton {
+.scoreLabel {
+    margin: auto;
     display: none;
-    vertical-align: middle;
-    line-height: 10px;
-    float: right;
-    margin-bottom: 10px;
-    border: 3px outset #5a76b5;
-    background-color: #ffcbcb;
     color: #5a76b5;
-    text-align: center;
 }
 
 .header {
