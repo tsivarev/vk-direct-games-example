@@ -37,23 +37,23 @@ var drawModule = (function() {
         context.beginPath();
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
         if (type === "head") {
-            context.fillStyle = "blue";
+            context.fillStyle = "#5a76b5";
         } else {
-            context.fillStyle = "lightblue";
+            context.fillStyle = "#a1b4dd";
         }
         context.fill();
         context.lineWidth = 1;
-        context.strokeStyle = '#003300';
+        context.strokeStyle = '#5a76b5';
         context.stroke();
     };
 
     var drawApple = function(x, y) {
         context.beginPath();
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
-        context.fillStyle = "yellow";
+        context.fillStyle = "#ffcbcb";
         context.fill();
         context.lineWidth = 1;
-        context.strokeStyle = '#003300';
+        context.strokeStyle = "#bf6969";
         context.stroke();
     };
 
@@ -121,7 +121,7 @@ var drawModule = (function() {
             generateApple();
         } else {
             var last = snake.pop();
-            context.fillStyle = "lightgrey";
+            context.fillStyle = "#e8eaf2";
             context.fillRect(last.x * blockSize - 1, last.y * blockSize - 1, blockSize + 2, blockSize + 2);
         }
         drawSnakeBlock(snakeX, snakeY, "head");
@@ -177,7 +177,7 @@ var drawModule = (function() {
         updateProperties();
         createSnake();
         generateApple();
-        context.fillStyle = "lightgrey";
+        context.fillStyle = "#e8eaf2";
         context.fillRect(0, 0, w, h);
         drawScore();
         drawPauseButton();
