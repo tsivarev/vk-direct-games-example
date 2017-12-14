@@ -1,3 +1,30 @@
+var onlongtouch;
+var timer, lockTimer;
+var touchduration = 500; //length of time we want the user to touch before we do something
+
+function touchstart(e) {
+    e.preventDefault();
+    if(lockTimer){
+        return;
+    }
+    timer = setTimeout(onlongtouch, touchduration);
+    lockTimer = true;
+}
+
+function touchend() {
+    //stops short touches from firing the event
+    if (timer){
+        clearTimeout(timer); // clearTimeout, not cleartimeout..
+        lockTimer = false;
+    }
+}
+
+onlongtouch = function() {
+    document.getElementById('start').innerText+='ping\n';
+};
+
+
+
 /* listen to swipes */
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
