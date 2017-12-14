@@ -2,9 +2,12 @@ var drawModule = (function() {
     /* game properties */
     const wBlocks = 18;
     const hBlocks = 25;
+    const innerWidth = window.innerWidth;
+    const innerHeight = window.innerHeight;
     var w;
     var h;
     var score;
+    var scoreSize;
     var blockSize;
     var snake;
     var apple;
@@ -13,15 +16,14 @@ var drawModule = (function() {
     var oldScore;
 
     var updateProperties = function() {
-        const innerWidth = window.innerWidth;
-        const innerHeight = window.innerHeight;
-        blockSize = Math.min(innerWidth / wBlocks, innerHeight / (hBlocks + 2));
+        blockSize = Math.min(innerWidth / (wBlocks + 1), innerHeight / (hBlocks + 1));
         w = wBlocks * blockSize;
         h = hBlocks * blockSize;
         canvas.width = w;
         canvas.height = h;
+        scoreSize = (innerHeight - h) / 3 * 2;
         canvas.style.marginLeft = (innerWidth - w) / 2 + "px";
-        canvas.style.marginTop = (innerHeight - h) / 3 * 2 + "px";
+        // canvas.style.marginTop = scoreSize + "px";
         // w = 800;
         // h = 800;
         score = 0;
@@ -56,17 +58,21 @@ var drawModule = (function() {
     };
 
     var drawScore = function() {
-        // context.fillStyle = "white";
-        // context.fillRect(w / 2 - 60, h + 10, 150, 30);
-        var scoreText = "Score: " + oldScore;
-        context.fillStyle = "white";
-        context.font = "30px Arial";
-        context.fillText(scoreText, w / 2 - 60, h + 35);
+        var scoreEl = document.getElementById('score');
+        scoreEl.style.display = "inline";
+        scoreEl.style.fontSize = (scoreSize + 10) + "px";
+        scoreEl.style.marginLeft = (innerWidth / 2 - (scoreSize + 10) * 2) + "px";
+        scoreEl.innerHTML = "Score: " + score;
 
-        var scoreText = "Score: " + score;
-        context.fillStyle = "black";
-        context.font = "30px Arial";
-        context.fillText(scoreText, w / 2 - 60, h + 35);
+        // var scoreText = "Score: " + oldScore;
+        // context.fillStyle = "white";
+        // context.font = "30px Arial";
+        // context.fillText(scoreText, w / 2 - 60, h + 35);
+        //
+        // var scoreText = "Score: " + score;
+        // context.fillStyle = "black";
+        // context.font = "30px Arial";
+        // context.fillText(scoreText, w / 2 - 60, h + 35);
     };
 
     var drawGame = function() {
@@ -153,10 +159,6 @@ var drawModule = (function() {
         direction = dir;
     };
 
-    var getDirection = function() {
-        return direction;
-    };
-
     var getCurDirection = function() {
         return curDirection;
     };
@@ -174,7 +176,6 @@ var drawModule = (function() {
     return {
         start : start,
         setDirection: setDirection,
-        getDirection: getDirection,
         drawGame: drawGame,
         getCurDirection: getCurDirection
     };

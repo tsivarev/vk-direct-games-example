@@ -34,3 +34,8 @@ body {
 .startGameButtonWrapper {
     text-align: center;
 }
+
+.score {
+    display: none;
+    font-size: 30px;
+}
