@@ -11,13 +11,13 @@ var drawModule = (function() {
     var oldScore;
 
     var updateProperties = function() {
-        // w = 900;
-        // h = 1500;
-        w = 800;
-        h = 800;
+        w = 900;
+        h = 1500;
+        // w = 800;
+        // h = 800;
         score = 0;
-        // blockSize = 50;
-        blockSize = 40;
+        blockSize = 50;
+        // blockSize = 40;
         snake = [];
         direction = "right";
         curDirection = direction;
