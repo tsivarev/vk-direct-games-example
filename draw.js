@@ -7,7 +7,7 @@ var drawModule = (function() {
     var w;
     var h;
     var score;
-    var scoreSize = 60;
+    var scoreSize = 70;
     var blockSize;
     var snake;
     var apple;
@@ -79,9 +79,9 @@ var drawModule = (function() {
         var pauseButton = document.getElementById('pauseButton');
         pauseButton.style.display = "inline";
         pauseButton.style.marginRight = ((innerWidth - w) / 2 - 2) + "px";
-        pauseButton.style.height = scoreSize + "px";
-        pauseButton.style.width = scoreSize * 2 + "px";
-        pauseButton.style.fontSize = (scoreSize / 2) + "px";
+        pauseButton.style.height = scoreSize * 1.5 + "px";
+        pauseButton.style.width = scoreSize * 2.5 + "px";
+        pauseButton.style.fontSize = scoreSize / 3 * 2 + "px";
     };
 
     var drawGame = function() {
