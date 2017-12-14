@@ -51,6 +51,7 @@ body {
     border: 3px outset #5a76b5;
     background-color: #ffcbcb;
     color: #5a76b5;
+    text-align: center;
 }
 
 .header {
