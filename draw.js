@@ -7,7 +7,7 @@ var drawModule = (function() {
     var w;
     var h;
     var score;
-    var scoreSize = 40;
+    var scoreSize = 60;
     var blockSize;
     var snake;
     var apple;
@@ -61,7 +61,7 @@ var drawModule = (function() {
         var scoreEl = document.getElementById("scoreLabel");
         scoreEl.style.display = "inline";
         scoreEl.style.fontSize = (scoreSize) + "px";
-        scoreEl.style.marginLeft = (innerWidth / 2 - scoreSize * 1.5) + "px";
+        scoreEl.style.marginLeft = (innerWidth / 2 - scoreSize * 2.5) + "px";
         scoreEl.innerHTML = "Score: " + score;
 
         // var scoreText = "Score: " + oldScore;
