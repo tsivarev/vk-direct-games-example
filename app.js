@@ -11,7 +11,7 @@ function handleTouchStart(evt) {
 };
 
 function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
+    if (!xDown || !yDown) {
         return;
     }
 
@@ -22,8 +22,8 @@ function handleTouchMove(evt) {
     var yDiff = yDown - yUp;
 
     var dir = drawModule.getDirection();
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) { /*most significant*/
-        if ( xDiff > 0 ) {
+    if (Math.abs(xDiff) > Math.abs(yDiff)) { /*most significant*/
+        if (xDiff > 0) {
             /* left swipe */
             if (dir !== "right") {
                 dir = "left";
@@ -35,7 +35,7 @@ function handleTouchMove(evt) {
             }
         }
     } else {
-        if ( yDiff > 0 ) {
+        if (yDiff > 0) {
             /* up swipe */
             if (dir !== "down") {
                 dir = "up";
@@ -49,6 +49,8 @@ function handleTouchMove(evt) {
     }
     /* reset values */
     drawModule.setDirection(dir);
+    gameloop = clearInterval(gameloop);
+    gameloop = setInterval(drawModule.drawGame, 180);
     xDown = null;
     yDown = null;
 }
@@ -56,40 +58,44 @@ function handleTouchMove(evt) {
 
 
 
-// document.onkeydown = function(event) {
-//
-//     keyCode = window.event.keyCode;
-//     keyCode = event.keyCode;
-//
-//     var direction = drawModule.getDirection();
-//     switch(keyCode) {
-//
-//         case 37:
-//             if (direction != 'right') {
-//                 direction = 'left';
-//             }
-//             break;
-//
-//         case 39:
-//             if (direction != 'left') {
-//                 direction = 'right';
-//             }
-//             break;
-//
-//         case 38:
-//             if (direction != 'down') {
-//                 direction = 'up';
-//             }
-//             break;
-//
-//         case 40:
-//             if (direction != 'up') {
-//                 direction = 'down';
-//             }
-//             break;
-//     }
-//     drawModule.setDirection(direction);
-// };
+document.onkeydown = function(event) {
+
+    keyCode = window.event.keyCode;
+    keyCode = event.keyCode;
+
+    var direction = drawModule.getCurDirection();
+    switch(keyCode) {
+
+        case 32:
+            gameloop = clearInterval(gameloop);
+            gameloop = setInterval(drawModule.drawGame, 90);
+            break;
+        case 37:
+            if (drawModule.getCurDirection() !== 'right') {
+                direction = 'left';
+            }
+            break;
+
+        case 39:
+            if (drawModule.getCurDirection() !== 'left') {
+                direction = 'right';
+            }
+            break;
+
+        case 38:
+            if (drawModule.getCurDirection() !== 'down') {
+                direction = 'up';
+            }
+            break;
+
+        case 40:
+            if (drawModule.getCurDirection() !== 'up') {
+                direction = 'down';
+            }
+            break;
+    }
+    drawModule.setDirection(direction);
+};
 
 
 
