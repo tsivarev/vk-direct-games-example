@@ -49,8 +49,6 @@ function handleTouchMove(evt) {
     }
     /* reset values */
     drawModule.setDirection(dir);
-    gameloop = clearInterval(gameloop);
-    gameloop = setInterval(drawModule.drawGame, 180);
     xDown = null;
     yDown = null;
 }
