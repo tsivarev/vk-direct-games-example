@@ -7,7 +7,7 @@ var drawModule = (function() {
     var w;
     var h;
     var score;
-    var scoreSize;
+    var scoreSize = 40;
     var blockSize;
     var snake;
     var apple;
@@ -21,9 +21,9 @@ var drawModule = (function() {
         h = hBlocks * blockSize;
         canvas.width = w;
         canvas.height = h;
-        scoreSize = (innerHeight - h) / 4;
+        // scoreSize = (innerHeight - h) / 4;
         canvas.style.marginLeft = (innerWidth - w) / 2 + "px";
-        // canvas.style.marginTop = scoreSize + "px";
+        canvas.style.marginTop = "15px";
         // w = 800;
         // h = 800;
         score = 0;
@@ -35,7 +35,7 @@ var drawModule = (function() {
 
     var drawSnakeBlock = function(x, y, type) {
         context.beginPath();
-        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1, 0, 2 * Math.PI, false);
+        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
         if (type === "head") {
             context.fillStyle = "blue";
         } else {
@@ -49,16 +49,16 @@ var drawModule = (function() {
 
     var drawApple = function(x, y) {
         context.beginPath();
-        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1, 0, 2 * Math.PI, false);
+        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
         context.fillStyle = "yellow";
         context.fill();
-        context.lineWidth = 2;
+        context.lineWidth = 1;
         context.strokeStyle = '#003300';
         context.stroke();
     };
 
     var drawScore = function() {
-        var scoreEl = document.getElementById('score');
+        var scoreEl = document.getElementById("scoreLabel");
         scoreEl.style.display = "inline";
         scoreEl.style.fontSize = (scoreSize) + "px";
         scoreEl.style.marginLeft = (innerWidth / 2 - scoreSize * 1.5) + "px";
@@ -73,6 +73,15 @@ var drawModule = (function() {
         // context.fillStyle = "black";
         // context.font = "30px Arial";
         // context.fillText(scoreText, w / 2 - 60, h + 35);
+    };
+
+    var drawPauseButton = function() {
+        var pauseButton = document.getElementById('pauseButton');
+        pauseButton.style.display = "inline";
+        pauseButton.style.marginRight = ((innerWidth - w) / 2 - 2) + "px";
+        pauseButton.style.height = scoreSize + "px";
+        pauseButton.style.width = scoreSize * 2 + "px";
+        pauseButton.style.fontSize = (scoreSize / 2) + "px";
     };
 
     var drawGame = function() {
@@ -97,7 +106,8 @@ var drawModule = (function() {
         if (snakeX === -1 || snakeY === -1 || snakeX * blockSize === w || snakeY * blockSize === h
             || checkCrash(snakeX, snakeY)) {
             document.getElementById('startView').style.display = "inline";
-            document.getElementById('gameCanvas').style.display = "block";
+            document.getElementById('gameCanvas').style.display = "none";
+            document.getElementById('pauseButton').style.display = "block";
             oldScore = score;
             gameloop = clearInterval(gameloop);
             return;
@@ -112,7 +122,7 @@ var drawModule = (function() {
         } else {
             var last = snake.pop();
             context.fillStyle = "lightgrey";
-            context.fillRect(last.x * blockSize, last.y * blockSize, blockSize, blockSize);
+            context.fillRect(last.x * blockSize - 1, last.y * blockSize - 1, blockSize + 2, blockSize + 2);
         }
         drawSnakeBlock(snakeX, snakeY, "head");
         drawSnakeBlock(snake[1].x, snake[1].y, "body");
@@ -170,6 +180,7 @@ var drawModule = (function() {
         context.fillStyle = "lightgrey";
         context.fillRect(0, 0, w, h);
         drawScore();
+        drawPauseButton();
         gameloop = setInterval(drawGame, 180);
     };
 

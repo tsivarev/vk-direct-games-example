@@ -119,3 +119,16 @@ function startGame() {
 
     drawModule.start();
 }
+
+var isPause = false;
+function pauseGame() {
+    if (!isPause) {
+        isPause = true;
+        document.getElementById('pauseButton').innerHTML = "Play";
+        gameloop = clearInterval(gameloop);
+    } else {
+        isPause = false;
+        document.getElementById('pauseButton').innerHTML = "Pause";
+        gameloop = setInterval(drawModule.drawGame, 180);
+    }
+}

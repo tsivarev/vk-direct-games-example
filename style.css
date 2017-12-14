@@ -24,7 +24,7 @@ body {
     background-color: lightBlue;
     height: 50px;
     width: 100px;
-    cursor: pointer;
+    /*cursor: pointer;*/
 
     position: absolute;
     top: 50%;
@@ -35,7 +35,23 @@ body {
     text-align: center;
 }
 
-.score {
+.scoreLabel {
     display: none;
-    font-size: 30px;
+    vertical-align: middle;
+    line-height: 10px;
+    float: left;
+    margin-top: 10px;
+}
+
+.pauseButton {
+    display: none;
+    vertical-align: middle;
+    line-height: 10px;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.header {
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
