@@ -12,12 +12,12 @@ var drawModule = (function () {
     var curDirection;
 
     var updateProperties = function () {
-        blockSize = Math.min(innerWidth / (wBlocks + 1), innerHeight / (hBlocks + 1));
+        blockSize = Math.min(window.innerWidth / (wBlocks + 1), window.innerHeight / (hBlocks + 1));
         w = wBlocks * blockSize;
         h = hBlocks * blockSize;
         canvas.width = w;
         canvas.height = h;
-        canvas.style.marginLeft = (innerWidth - w) / 2 + px;
+        canvas.style.marginLeft = (window.innerWidth - w) / 2 + px;
         score = 0;
         snake = [];
         direction = right;
@@ -54,7 +54,7 @@ var drawModule = (function () {
         var scoreEl = document.getElementById("scoreLabel");
         scoreEl.style.display = "inline";
         scoreEl.style.fontSize = (scoreSize) + px;
-        scoreEl.style.marginLeft = (innerWidth - w) / 2 + px;
+        scoreEl.style.marginLeft = (window.innerWidth - w) / 2 + px;
         scoreEl.innerHTML = "Score: " + score;
     };
 
