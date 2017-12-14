@@ -25,24 +25,24 @@ function handleTouchMove(evt) {
     if (Math.abs(xDiff) > Math.abs(yDiff)) { /*most significant*/
         if (xDiff > 0) {
             /* left swipe */
-            if (dir !== "right") {
+            if (drawModule.getCurDirection() !== "right") {
                 dir = "left";
             }
         } else {
             /* right swipe */
-            if (dir !== "left") {
+            if (drawModule.getCurDirection() !== "left") {
                 dir = "right";
             }
         }
     } else {
         if (yDiff > 0) {
             /* up swipe */
-            if (dir !== "down") {
+            if (drawModule.getCurDirection() !== "down") {
                 dir = "up";
             }
         } else {
             /* down swipe */
-            if (dir !== "up") {
+            if (drawModule.getCurDirection() !== "up") {
                 dir = "down";
             }
         }

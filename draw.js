@@ -40,7 +40,7 @@ var drawModule = (function() {
     var drawApple = function(x, y) {
         context.beginPath();
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2, blockSize / 2 - 1, 0, 2 * Math.PI, false);
-        context.fillStyle = "red";
+        context.fillStyle = "yellow";
         context.fill();
         context.lineWidth = 2;
         context.strokeStyle = '#003300';
