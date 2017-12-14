@@ -1,7 +1,7 @@
 var drawModule = (function() {
     /* game properties */
     const wBlocks = 18;
-    const hBlocks = 30;
+    const hBlocks = 25;
     var w;
     var h;
     var score;
