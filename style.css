@@ -41,17 +41,10 @@ body {
 }
 
 .scoreLabelWrapper {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: auto;
 }
 
 .scoreLabel {
-    margin: auto;
     display: none;
     color: #5a76b5;
-}
-
-.header {
-    margin-top: 15px;
-    margin-bottom: 10px;
 }

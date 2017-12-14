@@ -54,7 +54,7 @@ var drawModule = (function () {
         var scoreEl = document.getElementById("scoreLabel");
         scoreEl.style.display = "inline";
         scoreEl.style.fontSize = (scoreSize) + px;
-        scoreEl.style.marginLeft = (innerWidth / 2 - scoreSize * 2.85) + px;
+        scoreEl.style.marginLeft = (innerWidth - w) / 2 + px;
         scoreEl.innerHTML = "Score: " + score;
     };
 
