@@ -3,7 +3,7 @@ var drawModule = (function () {
     var w;
     var h;
     var score;
-    var scoreSize = 70;
+    var scoreSize = 50;
     var blockSize;
     var snake;
     var apple;
@@ -72,8 +72,14 @@ var drawModule = (function () {
 
         if (snakeX === -1 || snakeY === -1 || (snakeX * blockSize) === w || (snakeY * blockSize) === h
             || checkCrash(snakeX, snakeY)) {
-            document.getElementById("startView").style.display = "inline";
             canvas.style.display = "none";
+            document.getElementById("startView").style.display = "inline";
+            document.getElementById("startGameButton").style.top = "50%";
+            var gameOverLabel = document.getElementById("gameOverLabel");
+            gameOverLabel.style.display = "block";
+            var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
+            scoreLabelGameOver.innerHTML += score;
+            scoreLabelGameOver.style.display = "block";
             gameloop = clearInterval(gameloop);
             return;
         }
