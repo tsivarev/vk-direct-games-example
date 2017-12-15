@@ -23,6 +23,7 @@ body {
     border: 3px solid #000000;
     display: none;
     margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 .startGameButton {
