@@ -24,30 +24,50 @@ var drawModule = (function () {
         curDirection = direction;
     };
 
-    var drawSnakeBlock = function (x, y, type) {
-        context.beginPath();
-        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
-            blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
-        if (type === "head") {
-            context.fillStyle = COLOR_HEAD;
-        } else {
-            context.fillStyle = COLOR_BODY;
-        }
-        context.fill();
-        context.lineWidth = 1;
-        context.strokeStyle = COLOR_HEAD;
-        context.stroke();
+    var drawSnakeBlock = function (x, y) {
+        context.fillStyle = COLOR_SNAKE;
+        context.fillRect(x * blockSize + 1, y * blockSize + 1, blockSize - 2, blockSize - 2);
     };
 
     var drawApple = function (x, y) {
-        context.beginPath();
-        context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
-            blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
-        context.fillStyle = COLOR_APPLE;
-        context.fill();
-        context.lineWidth = 1;
-        context.strokeStyle = COLOR_APPLE_BORDER;
-        context.stroke();
+        var radius = blockSize / 4;
+        var drawApple = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+        for (var i = 0; i < drawApple.length; i++) {
+            context.beginPath();
+            context.arc(x * blockSize + blockSize / 2 + radius * drawApple[i][0],
+                        y * blockSize + blockSize / 2 + radius * drawApple[i][1],
+                        radius / 2, 0, 2 * Math.PI, false);
+            context.fillStyle = COLOR_APPLE;
+            context.fill();
+            context.stroke();
+        }
+        // context.beginPath();
+        // context.arc(x * blockSize + blockSize / 2 - radius, y * blockSize + blockSize / 2,
+        //     radius / 2, 0, 2 * Math.PI, false);
+        // context.fillStyle = COLOR_APPLE;
+        // context.fill();
+        // context.stroke();
+        //
+        // context.beginPath();
+        // context.arc(x * blockSize + blockSize / 2 + radius, y * blockSize + blockSize / 2,
+        //     radius / 2, 0, 2 * Math.PI, false);
+        // context.fillStyle = COLOR_APPLE;
+        // context.fill();
+        // context.stroke();
+        //
+        // context.beginPath();
+        // context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2 + radius,
+        //     radius / 2, 0, 2 * Math.PI, false);
+        // context.fillStyle = COLOR_APPLE;
+        // context.fill();
+        // context.stroke();
+        //
+        // context.beginPath();
+        // context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2 - radius,
+        //     radius / 2, 0, 2 * Math.PI, false);
+        // context.fillStyle = COLOR_APPLE;
+        // context.fill();
+        // context.stroke();
     };
 
     var drawScore = function () {
@@ -55,7 +75,7 @@ var drawModule = (function () {
         scoreEl.style.display = "inline";
         scoreEl.style.fontSize = scoreSize + PX;
         scoreEl.style.marginLeft = (window.innerWidth - w) / 2 + PX;
-        scoreEl.innerHTML = "Score: " + score;
+        scoreEl.innerHTML = "SCORE: " + score;
     };
 
     var drawGame = function () {
@@ -97,8 +117,8 @@ var drawModule = (function () {
             context.fillRect(last.x * blockSize - 1, last.y * blockSize - 1, blockSize + 2, blockSize + 2);
         }
 
-        drawSnakeBlock(snakeX, snakeY, "head");
-        drawSnakeBlock(snake[1].x, snake[1].y, "body");
+        drawSnakeBlock(snakeX, snakeY);
+        drawSnakeBlock(snake[1].x, snake[1].y);
         curDirection = direction;
 
         drawApple(apple.x, apple.y);

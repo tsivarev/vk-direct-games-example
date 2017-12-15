@@ -5,11 +5,9 @@ const DOWN = "down";
 const PX = "px";
 const W_BLOCKS = 18;
 const H_BLOCKS = 25;
-const COLOR_HEAD = "#5a76b5";
-const COLOR_BODY = "#a1b4dd";
-const COLOR_APPLE = "#ffcbcb";
-const COLOR_APPLE_BORDER = "#bf6969";
-const COLOR_GAME_FIELD = "#e8eaf2";
+const COLOR_SNAKE = "black";
+const COLOR_APPLE = "black";
+const COLOR_GAME_FIELD = "#a2d39c";
 
 /* listen to swipes */
 document.addEventListener("touchstart", handleTouchStart, false);
