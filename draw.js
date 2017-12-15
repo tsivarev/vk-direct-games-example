@@ -35,39 +35,12 @@ var drawModule = (function () {
         for (var i = 0; i < drawApple.length; i++) {
             context.beginPath();
             context.arc(x * blockSize + blockSize / 2 + radius * drawApple[i][0],
-                        y * blockSize + blockSize / 2 + radius * drawApple[i][1],
-                        radius / 2, 0, 2 * Math.PI, false);
+                y * blockSize + blockSize / 2 + radius * drawApple[i][1],
+                radius / 2, 0, 2 * Math.PI, false);
             context.fillStyle = COLOR_APPLE;
             context.fill();
             context.stroke();
         }
-        // context.beginPath();
-        // context.arc(x * blockSize + blockSize / 2 - radius, y * blockSize + blockSize / 2,
-        //     radius / 2, 0, 2 * Math.PI, false);
-        // context.fillStyle = COLOR_APPLE;
-        // context.fill();
-        // context.stroke();
-        //
-        // context.beginPath();
-        // context.arc(x * blockSize + blockSize / 2 + radius, y * blockSize + blockSize / 2,
-        //     radius / 2, 0, 2 * Math.PI, false);
-        // context.fillStyle = COLOR_APPLE;
-        // context.fill();
-        // context.stroke();
-        //
-        // context.beginPath();
-        // context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2 + radius,
-        //     radius / 2, 0, 2 * Math.PI, false);
-        // context.fillStyle = COLOR_APPLE;
-        // context.fill();
-        // context.stroke();
-        //
-        // context.beginPath();
-        // context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2 - radius,
-        //     radius / 2, 0, 2 * Math.PI, false);
-        // context.fillStyle = COLOR_APPLE;
-        // context.fill();
-        // context.stroke();
     };
 
     var drawScore = function () {
