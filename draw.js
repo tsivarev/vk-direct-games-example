@@ -12,15 +12,15 @@ var drawModule = (function () {
     var curDirection;
 
     var updateProperties = function () {
-        blockSize = Math.min(window.innerWidth / (wBlocks + 1), window.innerHeight / (hBlocks + 1));
-        w = wBlocks * blockSize;
-        h = hBlocks * blockSize;
+        blockSize = Math.min(window.innerWidth / (W_BLOCKS + 1), window.innerHeight / (H_BLOCKS + 1));
+        w = W_BLOCKS * blockSize;
+        h = H_BLOCKS * blockSize;
         canvas.width = w;
         canvas.height = h;
-        canvas.style.marginLeft = (window.innerWidth - w) / 2 + px;
+        canvas.style.marginLeft = (window.innerWidth - w) / 2 + PX;
         score = 0;
         snake = [];
-        direction = right;
+        direction = RIGHT;
         curDirection = direction;
     };
 
@@ -29,13 +29,13 @@ var drawModule = (function () {
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
             blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
         if (type === "head") {
-            context.fillStyle = headColor;
+            context.fillStyle = COLOR_HEAD;
         } else {
-            context.fillStyle = bodyColor;
+            context.fillStyle = COLOR_BODY;
         }
         context.fill();
         context.lineWidth = 1;
-        context.strokeStyle = headColor;
+        context.strokeStyle = COLOR_HEAD;
         context.stroke();
     };
 
@@ -43,18 +43,18 @@ var drawModule = (function () {
         context.beginPath();
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
             blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
-        context.fillStyle = appleColor;
+        context.fillStyle = COLOR_APPLE;
         context.fill();
         context.lineWidth = 1;
-        context.strokeStyle = appleBorderColor;
+        context.strokeStyle = COLOR_APPLE_BORDER;
         context.stroke();
     };
 
     var drawScore = function () {
         var scoreEl = document.getElementById("scoreLabel");
         scoreEl.style.display = "inline";
-        scoreEl.style.fontSize = (scoreSize) + px;
-        scoreEl.style.marginLeft = (window.innerWidth - w) / 2 + px;
+        scoreEl.style.fontSize = scoreSize + PX;
+        scoreEl.style.marginLeft = (window.innerWidth - w) / 2 + PX;
         scoreEl.innerHTML = "Score: " + score;
     };
 
@@ -63,21 +63,21 @@ var drawModule = (function () {
         var snakeY = snake[0].y;
 
         switch (direction) {
-            case right:
+            case RIGHT:
                 snakeX++;
                 break;
-            case left:
+            case LEFT:
                 snakeX--;
                 break;
-            case down:
+            case DOWN:
                 snakeY++;
                 break;
-            case up:
+            case UP:
                 snakeY--;
                 break;
         }
 
-        if (snakeX === -1 || snakeY === -1 || snakeX * blockSize === w || snakeY * blockSize === h
+        if (snakeX === -1 || snakeY === -1 || (snakeX * blockSize) === w || (snakeY * blockSize) === h
             || checkCrash(snakeX, snakeY)) {
             document.getElementById("startView").style.display = "inline";
             canvas.style.display = "none";
@@ -93,7 +93,7 @@ var drawModule = (function () {
             generateApple();
         } else {
             var last = snake.pop();
-            context.fillStyle = gameFieldColor;
+            context.fillStyle = COLOR_GAME_FIELD;
             context.fillRect(last.x * blockSize - 1, last.y * blockSize - 1, blockSize + 2, blockSize + 2);
         }
 
@@ -150,7 +150,7 @@ var drawModule = (function () {
         updateProperties();
         createSnake();
         generateApple();
-        context.fillStyle = gameFieldColor;
+        context.fillStyle = COLOR_GAME_FIELD;
         context.fillRect(0, 0, w, h);
         drawScore();
         gameloop = setInterval(drawGame, 180);

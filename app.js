@@ -1,17 +1,15 @@
-const right = "right";
-const left = "left";
-const up = "up";
-const down = "down";
-const px = "px";
-const wBlocks = 18;
-const hBlocks = 25;
-const innerWidth = window.innerWidth;
-const innerHeight = window.innerHeight;
-const headColor = "#5a76b5";
-const bodyColor = "#a1b4dd";
-const appleColor = "#ffcbcb";
-const appleBorderColor = "#bf6969";
-const gameFieldColor = "#e8eaf2";
+const RIGHT = "right";
+const LEFT = "left";
+const UP = "up";
+const DOWN = "down";
+const PX = "px";
+const W_BLOCKS = 18;
+const H_BLOCKS = 25;
+const COLOR_HEAD = "#5a76b5";
+const COLOR_BODY = "#a1b4dd";
+const COLOR_APPLE = "#ffcbcb";
+const COLOR_APPLE_BORDER = "#bf6969";
+const COLOR_GAME_FIELD = "#e8eaf2";
 
 /* listen to swipes */
 document.addEventListener("touchstart", handleTouchStart, false);
@@ -25,13 +23,13 @@ function handleTouchStart(evt) {
     yDown = evt.touches[0].clientY;
 }
 
-function handleTouchMove(evt) {
+function handleTouchMove(event) {
     if (!xDown || !yDown) {
         return;
     }
 
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
+    var xUp = event.touches[0].clientX;
+    var yUp = event.touches[0].clientY;
 
     var xDiff = xDown - xUp;
     var yDiff = yDown - yUp;
@@ -39,26 +37,26 @@ function handleTouchMove(evt) {
     var direction = drawModule.getCurDirection();
     if (Math.abs(xDiff) > Math.abs(yDiff)) { /* most significant */
         if (xDiff > 0) {
-            /* left swipe */
-            if (drawModule.getCurDirection() !== right) {
-                direction = left;
+            /* LEFT swipe */
+            if (drawModule.getCurDirection() !== RIGHT) {
+                direction = LEFT;
             }
         } else {
-            /* right swipe */
-            if (drawModule.getCurDirection() !== left) {
-                direction = right;
+            /* RIGHT swipe */
+            if (drawModule.getCurDirection() !== LEFT) {
+                direction = RIGHT;
             }
         }
     } else {
         if (yDiff > 0) {
             /* up swipe */
-            if (drawModule.getCurDirection() !== down) {
-                direction = up;
+            if (drawModule.getCurDirection() !== DOWN) {
+                direction = UP;
             }
         } else {
             /* down swipe */
-            if (drawModule.getCurDirection() !== up) {
-                direction = down;
+            if (drawModule.getCurDirection() !== UP) {
+                direction = DOWN;
             }
         }
     }
