@@ -78,7 +78,7 @@ var drawModule = (function () {
             var gameOverLabel = document.getElementById("gameOverLabel");
             gameOverLabel.style.display = "block";
             var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
-            scoreLabelGameOver.innerHTML += score;
+            scoreLabelGameOver.innerHTML = "SCORE: " + score;
             scoreLabelGameOver.style.display = "block";
             gameloop = clearInterval(gameloop);
             return;
