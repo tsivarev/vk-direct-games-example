@@ -72,14 +72,8 @@ var drawModule = (function () {
 
         if (snakeX === -1 || snakeY === -1 || (snakeX * blockSize) === w || (snakeY * blockSize) === h
             || checkCrash(snakeX, snakeY)) {
-            canvas.style.display = "none";
-            document.getElementById("startView").style.display = "inline";
-            document.getElementById("startGameButton").style.top = "50%";
-            var gameOverLabel = document.getElementById("gameOverLabel");
-            gameOverLabel.style.display = "block";
-            var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
-            scoreLabelGameOver.innerHTML = "SCORE: " + score;
-            scoreLabelGameOver.style.display = "block";
+            onCrashDisplayElements();
+            saveResult();
             gameloop = clearInterval(gameloop);
             return;
         }
@@ -101,6 +95,43 @@ var drawModule = (function () {
         curDirection = direction;
 
         drawApple(apple.x, apple.y);
+    };
+
+    function createRequest(method, url) {
+        var xmlHttpRequest = new XMLHttpRequest();
+        if ("withCredentials" in xmlHttpRequest) {
+            xmlHttpRequest.open(method, url, true);
+        } else if (typeof XDomainRequest !== "undefined") {
+            xmlHttpRequest = new XDomainRequest();
+            xmlHttpRequest.open(method, url);
+        } else {
+            xmlHttpRequest = null;
+        }
+        return xmlHttpRequest;
+    }
+
+    var saveResult = function () {
+        const urlAddress = "https://api.vk.com/method/secure.addAppEvent?activity_id=2&value=" + score +
+            "access_token=9371463093714630937146306093114c729937193714630c95f1f115b89926b31f1188a&v=5.69";
+        var xmlHttp = createRequest("GET", urlAddress);
+        xmlHttp.onload = function() {
+            alert("score " + score + " was saved");
+        };
+        xmlHttp.onerror = function(e) {
+            alert("error while saving result");
+        };
+        xmlHttp.send();
+    };
+
+    var onCrashDisplayElements = function () {
+        canvas.style.display = "none";
+        document.getElementById("startView").style.display = "inline";
+        document.getElementById("playButton").style.top = "50%";
+        var gameOverLabel = document.getElementById("gameOverLabel");
+        gameOverLabel.style.display = "block";
+        var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
+        scoreLabelGameOver.innerHTML = "SCORE: " + score;
+        scoreLabelGameOver.style.display = "block";
     };
 
     var checkCrash = function (x, y) {
