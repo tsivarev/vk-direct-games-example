@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <link rel="stylesheet" type="text/css" href="stylefont.css"/>
+    <script src="https://vk.com/js/api/mobile_sdk.js"  type="text/javascript"></script>
     <title>Snake</title>
 </head>
 <body>
@@ -20,6 +21,13 @@
     <b id="scoreLabel" class="scoreLabel"></b>
 </div>
 
+<script type="text/javascript">
+    VK.init(function() {
+        // API initialization succeeded
+    }, function() {
+        // API initialization failed
+    }, '5.60');
+</script>
 <script type="text/javascript" src="app.js"></script>
 <script type="text/javascript" src="draw.js"></script>
 </body>
