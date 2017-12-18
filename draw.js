@@ -111,17 +111,17 @@ var drawModule = (function () {
     }
 
     var saveResult = function () {
-        const urlAddress = "https://api.vk.com/method/secure.addAppEvent?activity_id=2&value=" + score +
-            "&access_token=9371463093714630937146306093114c729937193714630c95f1f115b89926b31f1188a&v=5.69";
-        var xmlHttp = createRequest("GET", urlAddress);
-        xmlHttp.onload = function() {
-            alert("score " + score + " was saved");
-        };
-        xmlHttp.onerror = function(e) {
-            alert("error while saving result");
-        };
-        xmlHttp.send();
-        VK.callMethod("showLeaderboardBox");
+        // const urlAddress = "https://api.vk.com/method/secure.addAppEvent?activity_id=2&value=" + score +
+        //     "&access_token=9371463093714630937146306093114c729937193714630c95f1f115b89926b31f1188a&v=5.69";
+        // var xmlHttp = createRequest("GET", urlAddress);
+        // xmlHttp.onload = function() {
+        //     alert("score " + score + " was saved");
+        // };
+        // xmlHttp.onerror = function(e) {
+        //     alert("error while saving result");
+        // };
+        // xmlHttp.send();
+        VK.callMethod("showLeaderboardBox", score);
     };
 
     var onCrashDisplayElements = function () {
