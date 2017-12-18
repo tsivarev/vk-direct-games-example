@@ -1,4 +1,12 @@
 var drawModule = (function () {
+    const COLOR_HEAD = "#5a76b5";
+    const COLOR_BODY = "#a1b4dd";
+    const COLOR_APPLE = "#ffcbcb";
+    const COLOR_APPLE_BORDER = "#bf6969";
+    const COLOR_GAME_FIELD = "#e8eaf2";
+    const LINE_WIDTH = 1;
+    const SCORE_SIZE = 70;
+
     var drawSnakeBlock = function (x, y, type) {
         context.beginPath();
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
@@ -25,17 +33,29 @@ var drawModule = (function () {
         context.stroke();
     };
 
-    var drawScore = function () {
+    var drawBlock = function (x, y) {
+        context.fillStyle = COLOR_GAME_FIELD;
+        context.fillRect(x * blockSize - 1, y * blockSize - 1, blockSize + 2, blockSize + 2);
+    };
+
+    var drawScore = function (score) {
         var scoreElement = document.getElementById("scoreLabel");
         scoreElement.style.display = "inline";
-        scoreElement.style.fontSize = scoreSize + PX;
+        scoreElement.style.fontSize = SCORE_SIZE + PX;
         scoreElement.style.marginLeft = (window.innerWidth - width) / 2 + PX;
         scoreElement.innerHTML = "Score: " + score;
+    };
+
+    var drawGameField = function () {
+        context.fillStyle = COLOR_GAME_FIELD;
+        context.fillRect(0, 0, width, height);
     };
 
     return {
         drawSnakeBlock: drawSnakeBlock,
         drawApple: drawApple,
-        drawScore: drawScore
+        drawBlock: drawBlock,
+        drawScore: drawScore,
+        drawGameField: drawGameField
     };
 }());

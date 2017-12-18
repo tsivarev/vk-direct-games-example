@@ -1,30 +1,13 @@
-/* game properties */
 const DIRECTION_RIGHT = "right";
 const DIRECTION_LEFT = "left";
 const DIRECTION_UP = "up";
 const DIRECTION_DOWN = "down";
 const PX = "px";
-const WIDTH_BLOCKS = 18;
-const HEIGHT_BLOCKS = 25;
-const COLOR_HEAD = "#5a76b5";
-const COLOR_BODY = "#a1b4dd";
-const COLOR_APPLE = "#ffcbcb";
-const COLOR_APPLE_BORDER = "#bf6969";
-const COLOR_GAME_FIELD = "#e8eaf2";
 const HEAD = "head";
 const BODY = "body";
-const LINE_WIDTH = 1;
-const GAME_INTERVAL = 180;
 var width;
 var height;
-var score;
-var scoreSize = 70;
 var blockSize;
-var snake;
-var apple;
-var direction;
-/* direction on screen */
-var currentDirection;
 
 /* listen to swipes */
 document.addEventListener("touchstart", handleTouchStart, false);

@@ -1,4 +1,15 @@
 var gameModule = (function () {
+    const WIDTH_BLOCKS = 18;
+    const HEIGHT_BLOCKS = 25;
+    const GAME_INTERVAL = 180;
+    /* game properties */
+    var snake;
+    var apple;
+    var direction;
+    var score;
+    /* direction on screen */
+    var currentDirection;
+
     var updateProperties = function () {
         blockSize = Math.min(window.innerWidth / (WIDTH_BLOCKS + 1), window.innerHeight / (HEIGHT_BLOCKS + 1));
         width = WIDTH_BLOCKS * blockSize;
@@ -43,12 +54,11 @@ var gameModule = (function () {
 
         if (snakeX === apple.x && snakeY === apple.y) {
             score++;
-            drawModule.drawScore();
+            drawModule.drawScore(score);
             generateApple();
         } else {
             var last = snake.pop();
-            context.fillStyle = COLOR_GAME_FIELD;
-            context.fillRect(last.x * blockSize - 1, last.y * blockSize - 1, blockSize + 2, blockSize + 2);
+            drawModule.drawBlock(last.x, last.y);
         }
 
         drawModule.drawSnakeBlock(snakeX, snakeY, HEAD);
@@ -104,9 +114,8 @@ var gameModule = (function () {
         updateProperties();
         createSnake();
         generateApple();
-        context.fillStyle = COLOR_GAME_FIELD;
-        context.fillRect(0, 0, width, height);
-        drawModule.drawScore();
+        drawModule.drawGameField();
+        drawModule.drawScore(score);
         gameloop = setInterval(game, GAME_INTERVAL);
     };
 
