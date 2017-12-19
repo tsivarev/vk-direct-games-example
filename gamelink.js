@@ -1,4 +1,4 @@
-var game_link = {
+var gameLink = {
     "type": "link",
     "url": "https://vk.com/app6294082",
     "title": "Snake",

@@ -123,10 +123,12 @@ var drawModule = (function () {
         // xmlHttp.send();
 
         // VK.callMethod("showLeaderboardBox", score);
-        // VK.callMethod("showShareBox", score + " очков в игре Snake! Присоединяйся!",
-        //     [{game_link}],
-        //     "wall");
-        VK.callMethod("shareBox", "https://vk.com/app6294082", "https://vk.com/kingsfoill?z=photo20458730_317183581%2Fphotos20458730", "snakke");
+        VK.callMethod("showShareBox", score + " очков в игре Snake! Присоединяйся!",
+            [gameLink, {"photo": {
+                    "id": 386237065,
+                    "album_id": 0,
+                    "owner_id": 20458730}}],
+            "wall");
     };
 
     var onCrashDisplayElements = function () {
