@@ -3,8 +3,9 @@ const DIRECTION_LEFT = "left";
 const DIRECTION_UP = "up";
 const DIRECTION_DOWN = "down";
 const PX = "px";
-const HEAD = "head";
-const BODY = "body";
+const SNAKE_BLOCK_TYPE_HEAD = "head";
+const SNAKE_BLOCK_TYPE_BODY = "body";
+
 var width;
 var height;
 var blockSize;

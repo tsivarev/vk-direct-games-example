@@ -2,6 +2,7 @@ var gameModule = (function () {
     const WIDTH_BLOCKS = 18;
     const HEIGHT_BLOCKS = 25;
     const GAME_INTERVAL = 180;
+
     /* game properties */
     var snake;
     var apple;
@@ -61,8 +62,8 @@ var gameModule = (function () {
             drawModule.drawBlock(last.x, last.y);
         }
 
-        drawModule.drawSnakeBlock(snakeX, snakeY, HEAD);
-        drawModule.drawSnakeBlock(snake[1].x, snake[1].y, BODY);
+        drawModule.drawSnakeBlock(snakeX, snakeY, SNAKE_BLOCK_TYPE_HEAD);
+        drawModule.drawSnakeBlock(snake[1].x, snake[1].y, SNAKE_BLOCK_TYPE_BODY);
         currentDirection = direction;
 
         drawModule.drawApple(apple.x, apple.y);
