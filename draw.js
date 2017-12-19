@@ -124,7 +124,7 @@ var drawModule = (function () {
 
         // VK.callMethod("showLeaderboardBox", score);
         VK.callMethod("showShareBox", score + " очков в игре Snake! Присоединяйся!",
-            [gameLink, {"type": "photo", "photo": {
+            [{"type": "link", "link": gameLink}, {"type": "photo", "photo": {
                     "id": 386237065,
                     "album_id": 0,
                     "owner_id": 20458730}}],
