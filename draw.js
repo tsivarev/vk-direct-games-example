@@ -121,7 +121,9 @@ var drawModule = (function () {
         //     alert("error while saving result");
         // };
         // xmlHttp.send();
-        VK.callMethod("showLeaderboardBox", score);
+
+        // VK.callMethod("showLeaderboardBox", score);
+        VK.callMethod("showShareBox", "snake", "im");
     };
 
     var onCrashDisplayElements = function () {
