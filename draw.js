@@ -123,10 +123,10 @@ var drawModule = (function () {
         // xmlHttp.send();
 
         // VK.callMethod("showLeaderboardBox", score);
-        VK.callMethod("showShareBox", score + " очков в игре Snake! Присоединяйся!",
-            [{"type": "link", "url": "https://vk.com/app6294082", "title": "Snake",
-                "photo": {"photo_604": "https://lh4.ggpht.com/yJe6HqfvYKO2ej-qfsoWf50T71o4346gXkF6T66FMXBAjJ5DhMt7buBDESUMqYaeIqI=w300"}}],
-            "wall");
+        // VK.callMethod("showShareBox", score + " очков в игре Snake! Присоединяйся!",
+        //     [{game_link}],
+        //     "wall");
+        VK.callMethod("shareBox", "https://vk.com/app6294082", "https://vk.com/kingsfoill?z=photo20458730_317183581%2Fphotos20458730", "snakke");
     };
 
     var onCrashDisplayElements = function () {
