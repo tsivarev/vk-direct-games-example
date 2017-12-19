@@ -122,13 +122,13 @@ var drawModule = (function () {
         // };
         // xmlHttp.send();
 
-        // VK.callMethod("showLeaderboardBox", score);
-        VK.callMethod("showShareBox", score + " очков в игре Snake! Присоединяйся!",
-            [{"type": "link", "link": gameLink}, {"type": "photo", "photo": {
-                    "id": 386237065,
-                    "album_id": 0,
-                    "owner_id": 20458730}}],
-            "wall");
+        VK.callMethod("showLeaderboardBox", score);
+        // VK.callMethod("showShareBox", score + " очков в игре Snake! Присоединяйся!",
+        //     [{"type": "link", "link": gameLink}, {"type": "photo", "photo": {
+        //             "id": 386237065,
+        //             "album_id": 0,
+        //             "owner_id": 20458730}}],
+        //     "wall");
     };
 
     var onCrashDisplayElements = function () {
