@@ -123,7 +123,7 @@ var drawModule = (function () {
         // xmlHttp.send();
 
         // VK.callMethod("showLeaderboardBox", score);
-        VK.callMethod("showShareBox", score + "https://vk.com/app6294082", "photo-157932916_456239017",
+        VK.callMethod("showShareBox", "https://vk.com/app6294082", "photo-157932916_456239017",
             "im");
     };
 
