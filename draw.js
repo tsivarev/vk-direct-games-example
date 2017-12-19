@@ -129,7 +129,7 @@ var drawModule = (function () {
             //         "id": 386237065,
             //         "album_id": 0,
             //         "owner_id": 20458730}}],
-            "wall");
+            "im");
     };
 
     var onCrashDisplayElements = function () {
