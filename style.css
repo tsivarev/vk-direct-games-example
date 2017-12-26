@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html,
 body {
     position: fixed;
@@ -9,34 +14,44 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #a2d39c;
 }
 
 .startView {
-    background-color: #5a76b5;
+    background-color: #a2d39c;
     width: 100%;
     height: 100%;
     position: fixed;
 }
 
 .gameCanvas {
-    border: 1px solid #000000;
+    border: 3px solid #000000;
     display: none;
     margin-top: 15px;
+    margin-bottom: 5px;
 }
 
-.startGameButton {
-    border: 3px outset #2f416a;
-    background-color: #ffcbcb;
-    height: 100px;
-    width: 200px;
-    font-size: 30px;
-    color: #2f416a;
+.playButton {
+    border: 3px outset black;
+    background-color: black;
+    height: 130px;
+    width: 270px;
+    font-size: 50px;
+    /*font-family: "Courier New", Courier, monospace;*/
+    font-family: 'Phatone', serif;
+    color: #a2d39c;
     position: absolute;
     top: 45%;
-    margin-left: -3.45em;
+    margin-left: -2.75em;
+    box-shadow: 0px 0px 0px 5px #a2d39c, 0px 0px 0px 10px black;
+    text-align: center;
 }
 
-.startGameButtonWrapper {
+.playButtonText {
+    margin: auto;
+}
+
+.playButtonWrapper {
     text-align: center;
 }
 
@@ -46,5 +61,32 @@ body {
 
 .scoreLabel {
     display: none;
-    color: #5a76b5;
+    color: black;
+    font-family: 'Phatone', serif;
+}
+
+.gameOverLabel {
+    font-family: 'Phatone', serif;
+    color: black;
+    margin: auto;
+    font-size: 40px;
+    width: 500px;
+    display: none;
+    background-color: #a2d39c;
+    border: none;
+    margin-top: 20%;
+    text-align: center;
+}
+
+.scoreLabelGameOver {
+    font-family: 'Phatone', serif;
+    color: black;
+    margin: auto;
+    font-size: 35px;
+    width: 500px;
+    display: none;
+    background-color: #a2d39c;
+    border: none;
+    margin-top: 25%;
+    text-align: center;
 }

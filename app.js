@@ -3,13 +3,17 @@ const DIRECTION_LEFT = "left";
 const DIRECTION_UP = "up";
 const DIRECTION_DOWN = "down";
 const PX = "px";
-const SNAKE_BLOCK_TYPE_HEAD = "head";
-const SNAKE_BLOCK_TYPE_BODY = "body";
 const SCORE_SIZE = 70;
 
 var width;
 var height;
 var blockSize;
+
+VK.init(function() {
+    // API initialization succeeded
+}, function() {
+    // API initialization failed
+}, '5.60');
 
 /* listen to swipes */
 document.addEventListener("touchstart", handleTouchStart, false);

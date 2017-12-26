@@ -47,8 +47,8 @@ var gameModule = (function () {
 
         if (snakeX === -1 || snakeY === -1 || (snakeX * blockSize) === width || (snakeY * blockSize) === height
             || checkCrash(snakeX, snakeY)) {
-            document.getElementById("startView").style.display = "inline";
-            canvas.style.display = "none";
+            onCrashDisplayElements();
+            saveResult();
             gameloop = clearInterval(gameloop);
             return;
         }
@@ -61,14 +61,30 @@ var gameModule = (function () {
             generateApple();
         } else {
             var last = snake.pop();
-            drawModule.drawBlock(last.x, last.y);
+            drawModule.drawCleaningBlock(last.x, last.y);
         }
 
-        drawModule.drawSnakeBlock(snakeX, snakeY, SNAKE_BLOCK_TYPE_HEAD);
-        drawModule.drawSnakeBlock(snake[1].x, snake[1].y, SNAKE_BLOCK_TYPE_BODY);
+        drawModule.drawSnakeBlock(snakeX, snakeY);
+        drawModule.drawSnakeBlock(snake[1].x, snake[1].y);
         currentDirection = direction;
 
         drawModule.drawApple(apple.x, apple.y);
+    };
+
+    var onCrashDisplayElements = function () {
+        canvas.style.display = "none";
+        document.getElementById("startView").style.display = "inline";
+        document.getElementById("playButton").style.top = "50%";
+        var gameOverLabel = document.getElementById("gameOverLabel");
+        gameOverLabel.style.display = "block";
+        var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
+        scoreLabelGameOver.innerHTML = "SCORE: " + score;
+        scoreLabelGameOver.style.display = "block";
+    };
+
+    var saveResult = function () {
+        VK.callMethod("showShareBox", "https://vk.com/app6294082", "photo-157932916_456239017",
+            "im");
     };
 
     var checkCrash = function (x, y) {
