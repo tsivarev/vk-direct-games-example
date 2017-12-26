@@ -2,6 +2,7 @@ var gameModule = (function () {
     const WIDTH_BLOCKS = 18;
     const HEIGHT_BLOCKS = 25;
     const GAME_INTERVAL = 180;
+    const LENGTH = 3;
 
     /* game properties */
     var snake;
@@ -80,8 +81,7 @@ var gameModule = (function () {
     };
 
     var createSnake = function () {
-        var length = 3;
-        for (var i = length - 1; i >= 0; i--) {
+        for (var i = LENGTH - 1; i >= 0; i--) {
             snake.push({x: i, y: 0});
         }
     };

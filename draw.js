@@ -5,11 +5,14 @@ var drawModule = (function () {
     const COLOR_APPLE_BORDER = "#bf6969";
     const COLOR_GAME_FIELD = "#e8eaf2";
     const SNAKE_BLOCK_BORDER_WIDTH = 1;
+    const SNAKE_BLOCK_RADIUS_OFFSET = 1.5;
+    const APPLE_RADIUS_OFFSET = 1.5;
 
     var drawSnakeBlock = function (x, y, type) {
         context.beginPath();
+        var radius = blockSize / 2 - SNAKE_BLOCK_RADIUS_OFFSET;
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
-            blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
+            radius, 0, 2 * Math.PI, false);
         if (type === SNAKE_BLOCK_TYPE_HEAD) {
             context.fillStyle = COLOR_HEAD;
         } else {
@@ -23,8 +26,9 @@ var drawModule = (function () {
 
     var drawApple = function (x, y) {
         context.beginPath();
+        var radius = blockSize / 2 - APPLE_RADIUS_OFFSET;
         context.arc(x * blockSize + blockSize / 2, y * blockSize + blockSize / 2,
-            blockSize / 2 - 1.5, 0, 2 * Math.PI, false);
+            radius, 0, 2 * Math.PI, false);
         context.fillStyle = COLOR_APPLE;
         context.fill();
         context.lineWidth = SNAKE_BLOCK_BORDER_WIDTH;
@@ -34,7 +38,7 @@ var drawModule = (function () {
 
     var drawBlock = function (x, y) {
         context.fillStyle = COLOR_GAME_FIELD;
-        context.fillRect(x * blockSize - 1, y * blockSize - 1, blockSize + 2, blockSize + 2);
+        context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
     };
 
     var drawScore = function (score) {
