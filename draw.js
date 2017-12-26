@@ -6,7 +6,7 @@ var drawModule = (function () {
     const COLOR_GAME_FIELD = "#e8eaf2";
     const SNAKE_BLOCK_BORDER_WIDTH = 1;
     const SNAKE_BLOCK_RADIUS_OFFSET = 1.5;
-    const APPLE_RADIUS_OFFSET = 1.5;
+    const APPLE_RADIUS_OFFSET = 2;
 
     var drawSnakeBlock = function (x, y, type) {
         context.beginPath();
