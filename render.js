@@ -1,4 +1,4 @@
-var drawModule = (function () {
+var renderModule = (function () {
     const COLOR_SNAKE = "black";
     const COLOR_APPLE = "black";
     const COLOR_GAME_FIELD = "#a2d39c";
@@ -29,17 +29,32 @@ var drawModule = (function () {
         context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
     };
 
-    var drawScore = function (score) {
+    var drawScore = function () {
         var scoreElement = document.getElementById("scoreLabel");
         scoreElement.style.display = "inline";
         scoreElement.style.fontSize = SCORE_SIZE + PX;
         scoreElement.style.marginLeft = (window.innerWidth - width) / 2 + PX;
-        scoreElement.innerHTML = "SCORE: " + score;
+        scoreElement.innerHTML = "SCORE: ";
     };
 
     var drawGameField = function () {
         context.fillStyle = COLOR_GAME_FIELD;
         context.fillRect(0, 0, width, height);
+        canvas.style.marginLeft = (window.innerWidth - width) / 2 + PX;
+    };
+
+    var onCrashDisplayElements = function () {
+        canvas.style.display = "none";
+
+        document.getElementById("startView").style.display = "inline";
+        document.getElementById("playButton").style.top = "50%";
+
+        var gameOverLabel = document.getElementById("gameOverLabel");
+        gameOverLabel.style.display = "block";
+
+        var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
+        scoreLabelGameOver.innerHTML = "SCORE: " + score;
+        scoreLabelGameOver.style.display = "block";
     };
 
     return {
@@ -47,6 +62,7 @@ var drawModule = (function () {
         drawApple: drawApple,
         drawCleaningBlock: drawCleaningBlock,
         drawScore: drawScore,
-        drawGameField: drawGameField
+        drawGameField: drawGameField,
+        onCrashDisplayElements: onCrashDisplayElements
     };
 }());

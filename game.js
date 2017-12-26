@@ -10,7 +10,6 @@ var gameModule = (function () {
     var snake;
     var apple;
     var direction;
-    var score;
     /* direction on screen */
     var currentDirection;
 
@@ -21,7 +20,6 @@ var gameModule = (function () {
         height = HEIGHT_BLOCKS * blockSize;
         canvas.width = width;
         canvas.height = height;
-        canvas.style.marginLeft = (window.innerWidth - width) / 2 + PX;
         score = 0;
         snake = [];
         direction = DIRECTION_RIGHT;
@@ -49,7 +47,7 @@ var gameModule = (function () {
 
         if (snakeX === -1 || snakeY === -1 || (snakeX * blockSize) === width || (snakeY * blockSize) === height
             || checkCrash(snakeX, snakeY)) {
-            onCrashDisplayElements();
+            renderModule.onCrashDisplayElements();
             saveResult();
             gameloop = clearInterval(gameloop);
             return;
@@ -59,32 +57,18 @@ var gameModule = (function () {
 
         if (snakeX === apple.x && snakeY === apple.y) {
             score++;
-            drawModule.drawScore(score);
+            renderModule.drawScore(score);
             generateApple();
         } else {
             var last = snake.pop();
-            drawModule.drawCleaningBlock(last.x, last.y);
+            renderModule.drawCleaningBlock(last.x, last.y);
         }
 
-        drawModule.drawSnakeBlock(snakeX, snakeY);
-        drawModule.drawSnakeBlock(snake[1].x, snake[1].y);
+        renderModule.drawSnakeBlock(snakeX, snakeY);
+        renderModule.drawSnakeBlock(snake[1].x, snake[1].y);
         currentDirection = direction;
 
-        drawModule.drawApple(apple.x, apple.y);
-    };
-
-    var onCrashDisplayElements = function () {
-        canvas.style.display = "none";
-
-        document.getElementById("startView").style.display = "inline";
-        document.getElementById("playButton").style.top = "50%";
-
-        var gameOverLabel = document.getElementById("gameOverLabel");
-        gameOverLabel.style.display = "block";
-
-        var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
-        scoreLabelGameOver.innerHTML = "SCORE: " + score;
-        scoreLabelGameOver.style.display = "block";
+        renderModule.drawApple(apple.x, apple.y);
     };
 
     var saveResult = function () {
@@ -136,8 +120,8 @@ var gameModule = (function () {
         updateProperties();
         createSnake();
         generateApple();
-        drawModule.drawGameField();
-        drawModule.drawScore(score);
+        renderModule.drawGameField();
+        renderModule.drawScore(score);
         gameloop = setInterval(game, GAME_INTERVAL);
     };
 

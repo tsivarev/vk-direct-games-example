@@ -8,6 +8,7 @@ const SCORE_SIZE = 70;
 var width;
 var height;
 var blockSize;
+var score;
 
 VK.init(function() {
     // API initialization succeeded
