@@ -57,7 +57,7 @@ var gameModule = (function () {
 
         if (snakeX === apple.x && snakeY === apple.y) {
             score++;
-            renderModule.drawScore(score);
+            renderModule.drawScore();
             generateApple();
         } else {
             var last = snake.pop();
@@ -121,7 +121,7 @@ var gameModule = (function () {
         createSnake();
         generateApple();
         renderModule.drawGameField();
-        renderModule.drawScore(score);
+        renderModule.drawScore();
         gameloop = setInterval(game, GAME_INTERVAL);
     };
 
