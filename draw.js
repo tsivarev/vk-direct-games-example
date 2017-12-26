@@ -3,6 +3,7 @@ var drawModule = (function () {
     const COLOR_APPLE = "black";
     const COLOR_GAME_FIELD = "#a2d39c";
     const SNAKE_BLOCK_SIZE_OFFSET = 1;
+    const DRAW_APPLE_COORDINATES_ADJUSTMENT = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
     var drawSnakeBlock = function (x, y) {
         context.fillStyle = COLOR_SNAKE;
@@ -12,7 +13,6 @@ var drawModule = (function () {
 
     var drawApple = function (x, y) {
         var radius = blockSize / 4;
-        const DRAW_APPLE_COORDINATES_ADJUSTMENT = [[-1, 0], [1, 0], [0, -1], [0, 1]];
         for (var i = 0; i < DRAW_APPLE_COORDINATES_ADJUSTMENT.length; i++) {
             context.beginPath();
             context.arc(x * blockSize + blockSize / 2 + radius * DRAW_APPLE_COORDINATES_ADJUSTMENT[i][0],

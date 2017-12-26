@@ -3,6 +3,8 @@ var gameModule = (function () {
     const HEIGHT_BLOCKS = 25;
     const GAME_INTERVAL = 180;
     const LENGTH = 3;
+    const APP_URL = "https://vk.com/app6294082";
+    const APP_SHARE_PHOTO_LINK = "photo-157932916_456239017";
 
     /* game properties */
     var snake;
@@ -73,18 +75,20 @@ var gameModule = (function () {
 
     var onCrashDisplayElements = function () {
         canvas.style.display = "none";
+
         document.getElementById("startView").style.display = "inline";
         document.getElementById("playButton").style.top = "50%";
+
         var gameOverLabel = document.getElementById("gameOverLabel");
         gameOverLabel.style.display = "block";
+
         var scoreLabelGameOver = document.getElementById("scoreLabelGameOver");
         scoreLabelGameOver.innerHTML = "SCORE: " + score;
         scoreLabelGameOver.style.display = "block";
     };
 
     var saveResult = function () {
-        VK.callMethod("showShareBox", "https://vk.com/app6294082", "photo-157932916_456239017",
-            "im");
+        VK.callMethod("showShareBox", APP_URL, APP_SHARE_PHOTO_LINK, "im");
     };
 
     var checkCrash = function (x, y) {

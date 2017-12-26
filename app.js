@@ -13,7 +13,7 @@ VK.init(function() {
     // API initialization succeeded
 }, function() {
     // API initialization failed
-}, '5.60');
+}, '5.69');
 
 /* listen to swipes */
 document.addEventListener("touchstart", handleTouchStart, false);
