@@ -5,6 +5,7 @@ const DIRECTION_DOWN = "down";
 const PX = "px";
 const SNAKE_BLOCK_TYPE_HEAD = "head";
 const SNAKE_BLOCK_TYPE_BODY = "body";
+const SCORE_SIZE = 70;
 
 var width;
 var height;
@@ -13,22 +14,27 @@ var blockSize;
 /* listen to swipes */
 document.addEventListener("touchstart", handleTouchStart, false);
 document.addEventListener("touchmove", handleTouchMove, false);
+document.addEventListener("mousedown", handleTouchStart, false);
+document.addEventListener("mouseup", handleTouchMove, false);
 
 var xDown = null;
 var yDown = null;
 
 function handleTouchStart(event) {
-    xDown = event.touches[0].clientX;
-    yDown = event.touches[0].clientY;
+    xDown = event.clientX || (event.touches && event.touches[0].clientX);
+    yDown = event.clientY || (event.touches && event.touches[0].clientY);
 }
 
 function handleTouchMove(event) {
     if (!xDown || !yDown) {
         return;
     }
+    if (!!event.touches && event.touches.length > 1) {
+        return;
+    }
 
-    var xUp = event.touches[0].clientX;
-    var yUp = event.touches[0].clientY;
+    var xUp = event.clientX || (event.touches && event.touches[0].clientX);
+    var yUp = event.clientY || (event.touches && event.touches[0].clientY);
 
     var xDiff = xDown - xUp;
     var yDiff = yDown - yUp;

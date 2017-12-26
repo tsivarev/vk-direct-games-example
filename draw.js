@@ -5,7 +5,6 @@ var drawModule = (function () {
     const COLOR_APPLE_BORDER = "#bf6969";
     const COLOR_GAME_FIELD = "#e8eaf2";
     const SNAKE_BLOCK_BORDER_WIDTH = 1;
-    const SCORE_SIZE = 70;
 
     var drawSnakeBlock = function (x, y, type) {
         context.beginPath();

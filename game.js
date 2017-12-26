@@ -12,7 +12,8 @@ var gameModule = (function () {
     var currentDirection;
 
     var updateProperties = function () {
-        blockSize = Math.min(window.innerWidth / (WIDTH_BLOCKS + 1), window.innerHeight / (HEIGHT_BLOCKS + 1));
+        blockSize = Math.min(window.innerWidth / (WIDTH_BLOCKS + 1),
+            (window.innerHeight - SCORE_SIZE) / (HEIGHT_BLOCKS + 1));
         width = WIDTH_BLOCKS * blockSize;
         height = HEIGHT_BLOCKS * blockSize;
         canvas.width = width;
