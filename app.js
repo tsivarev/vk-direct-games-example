@@ -5,10 +5,10 @@ const DIRECTION_DOWN = "down";
 const PX = "px";
 const SCORE_SIZE = 70;
 
-var width;
-var height;
-var blockSize;
-var score;
+let width;
+let height;
+let blockSize;
+let score;
 
 VK.init(function() {
     // API initialization succeeded
@@ -22,8 +22,8 @@ document.addEventListener("touchmove", handleTouchMove, false);
 document.addEventListener("mousedown", handleTouchStart, false);
 document.addEventListener("mouseup", handleTouchMove, false);
 
-var xDown = null;
-var yDown = null;
+let xDown = null;
+let yDown = null;
 
 function handleTouchStart(event) {
     xDown = event.clientX || (event.touches && event.touches[0].clientX);
@@ -38,13 +38,13 @@ function handleTouchMove(event) {
         return;
     }
 
-    var xUp = event.clientX || (event.touches && event.touches[0].clientX);
-    var yUp = event.clientY || (event.touches && event.touches[0].clientY);
+    let xUp = event.clientX || (event.touches && event.touches[0].clientX);
+    let yUp = event.clientY || (event.touches && event.touches[0].clientY);
 
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
+    let xDiff = xDown - xUp;
+    let yDiff = yDown - yUp;
 
-    var direction = gameModule.getCurrentDirection();
+    let direction = gameModule.getCurrentDirection();
     if (Math.abs(xDiff) > Math.abs(yDiff)) { /* most significant */
         if (xDiff > 0) {
             /* LEFT swipe */
@@ -76,8 +76,8 @@ function handleTouchMove(event) {
     yDown = null;
 }
 
-var canvas = document.getElementById("gameCanvas");
-var context = canvas.getContext("2d");
+let canvas = document.getElementById("gameCanvas");
+let context = canvas.getContext("2d");
 
 function startGame() {
     document.getElementById("startView").style.display = "none";
