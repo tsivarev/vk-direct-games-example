@@ -72,7 +72,8 @@ let gameModule = (function () {
     }
 
     function saveResult () {
-        VK.callMethod("showShareBox", APP_URL, APP_SHARE_PHOTO_LINK, "im");
+        // VK.callMethod("showShareBox", APP_URL, APP_SHARE_PHOTO_LINK, "im");
+        VK.callMethod("showLeaderboardBox", score);
     }
 
     function checkSnakeCollision (x, y) {
