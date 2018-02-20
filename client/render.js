@@ -34,7 +34,7 @@ let renderModule = (function () {
         scoreElement.style.display = "inline";
         scoreElement.style.fontSize = SCORE_SIZE + PX;
         scoreElement.style.marginLeft = (window.innerWidth - width) / 2 + PX;
-        scoreElement.innerHTML = "SCORE: " + (score + 100);
+        scoreElement.innerHTML = "SCORE: " + score;
     }
 
     function drawGameField () {
