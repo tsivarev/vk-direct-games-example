@@ -13,15 +13,26 @@ function sendRequest(url, params, callback) {
     http.send(JSON.stringify(params));
 }
 
-function submitScore(score) {
-    alert(window.location.search);
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) === variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    console.log('Query variable %s not found', variable);
+    return null;
+}
 
+function submitScore(score) {
     var url = 'https://9698c55f.ngrok.io/~Viktoria/server.php';
     var params = {
         'score': score,
-        // 'viewer_id': 100500,
-        // 'api_id': 1,
-        // 'auth_key': '805134f02c15fe256c4f7d196b03d9fe'
+        'viewer_id': getQueryVariable('viewer_id'),
+        'api_id': getQueryVariable('api_id'),
+        'auth_key': getQueryVariable('auth_key')
     };
 
     sendRequest(url, params, function(http) {
