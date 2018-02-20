@@ -14,7 +14,7 @@ function sendRequest(url, params, callback) {
 }
 
 function submitScore(score) {
-    var url = 'http://172.23.225.69/~Viktoria/server.php';
+    var url = 'http://172.23.201.114/~Viktoria/server.php';
     var params = {
         'score': score,
         'viewer_id': 100500,
