@@ -73,6 +73,7 @@ let gameModule = (function () {
 
     function saveResult () {
         // VK.callMethod("showShareBox", APP_URL, APP_SHARE_PHOTO_LINK, "im");
+        submitScore(score);
         VK.callMethod("showLeaderboardBox", score);
     }
 
