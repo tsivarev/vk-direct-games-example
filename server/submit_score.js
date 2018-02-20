@@ -9,10 +9,10 @@ function sendRequest(url, params, callback) {
     http.open('POST', url, true);
     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-    alert(http.responseText, http.readyState, http.status);
     http.onreadystatechange = callback(http);
 
     http.send(paramsString);
+    alert('send ' + http.responseText + ' ' + http.readyState + ' ' + http.status);
 }
 
 function submitScore(score) {
