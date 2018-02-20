@@ -16,7 +16,7 @@ function sendRequest(url, params, callback) {
 
 function submitScore(score) {
     alert('score is being submitted');
-    var url = 'http://localhost/~Viktoria/server.php';
+    var url = 'http://185.29.130.2/~Viktoria/server.php';
     var params = ['score=' + score];
 
     sendRequest(url, params, function(http) {
