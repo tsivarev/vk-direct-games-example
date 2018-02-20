@@ -24,7 +24,9 @@ function submitScore(score) {
 
     sendRequest(url, params, function(http) {
         return function() {
+            console.log("Update!");
             if (http.readyState == 4 && http.status == 200) {
+                console.log(http.responseText);
                 alert(http.responseText);
             }
         }
