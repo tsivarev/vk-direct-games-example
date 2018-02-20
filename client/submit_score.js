@@ -15,7 +15,7 @@ function sendRequest(url, params, callback) {
 
 function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
-    var vars = query.split('&');
+    var vars = query.split(AND_SIGN);
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split('=');
         if (decodeURIComponent(pair[0]) === variable) {
