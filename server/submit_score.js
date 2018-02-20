@@ -14,12 +14,14 @@ function sendRequest(url, params, callback) {
 }
 
 function submitScore(score) {
+    alert(window.location.pathname);
+    alert(window.location.url);
     var url = 'https://9698c55f.ngrok.io/~Viktoria/server.php';
     var params = {
         'score': score,
-        'viewer_id': 100500,
-        'api_id': 1,
-        'auth_key': '805134f02c15fe256c4f7d196b03d9fe'
+        // 'viewer_id': 100500,
+        // 'api_id': 1,
+        // 'auth_key': '805134f02c15fe256c4f7d196b03d9fe'
     };
 
     sendRequest(url, params, function(http) {
