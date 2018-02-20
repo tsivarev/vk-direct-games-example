@@ -14,7 +14,7 @@ function sendRequest(url, params, callback) {
 }
 
 function submitScore(score) {
-    var url = 'http://172.23.201.114/~Viktoria/server.php';
+    var url = 'https://9698c55f.ngrok.io/~Viktoria/server.php';
     var params = {
         'score': score,
         'viewer_id': 100500,
