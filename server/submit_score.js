@@ -1,7 +1,5 @@
 const AND_SIGN = '&';
 
-submitScore(2);
-
 function sendRequest(url, params, callback) {
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var http = new XMLHttpRequest();
@@ -9,6 +7,7 @@ function sendRequest(url, params, callback) {
     http.open('POST', url, true);
     http.setRequestHeader('Content-type', 'application/json');
 
+    alert('I am here');
     http.onreadystatechange = callback(http);
 
     http.send(JSON.stringify(params));
