@@ -1,7 +1,7 @@
 const AND_SIGN = '&';
 
 function sendRequest(url, params, callback) {
-    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    //var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var http = new XMLHttpRequest();
 
     http.open('POST', url, true);
