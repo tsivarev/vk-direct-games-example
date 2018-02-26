@@ -1,34 +1,34 @@
-var gameModule = (function () {
+let gameModule = (function () {
     const WIDTH_BLOCKS = 18;
     const HEIGHT_BLOCKS = 25;
     const GAME_INTERVAL = 180;
-    const LENGTH = 3;
+    const INITIAL_SNAKE_LENGTH = 3;
+    const APP_URL = "https://vk.com/app6294082";
+    const APP_SHARE_PHOTO_LINK = "photo-157932916_456239017";
 
     /* game properties */
-    var snake;
-    var apple;
-    var direction;
-    var score;
+    let snake;
+    let apple;
+    let direction;
     /* direction on screen */
-    var currentDirection;
+    let currentDirection;
 
-    var updateProperties = function () {
+    function initProperties () {
         blockSize = Math.min(window.innerWidth / (WIDTH_BLOCKS + 1),
             (window.innerHeight - SCORE_SIZE) / (HEIGHT_BLOCKS + 1));
         width = WIDTH_BLOCKS * blockSize;
         height = HEIGHT_BLOCKS * blockSize;
         canvas.width = width;
         canvas.height = height;
-        canvas.style.marginLeft = (window.innerWidth - width) / 2 + PX;
         score = 0;
         snake = [];
         direction = DIRECTION_RIGHT;
         currentDirection = direction;
-    };
+    }
 
-    var game = function () {
-        var snakeX = snake[0].x;
-        var snakeY = snake[0].y;
+    function game () {
+        let snakeX = snake[0].x;
+        let snakeY = snake[0].y;
 
         switch (direction) {
             case DIRECTION_RIGHT:
@@ -46,9 +46,9 @@ var gameModule = (function () {
         }
 
         if (snakeX === -1 || snakeY === -1 || (snakeX * blockSize) === width || (snakeY * blockSize) === height
-            || checkCrash(snakeX, snakeY)) {
-            document.getElementById("startView").style.display = "inline";
-            canvas.style.display = "none";
+            || checkSnakeCollision(snakeX, snakeY)) {
+            renderModule.onCollisionDisplayElements();
+            saveResult();
             gameloop = clearInterval(gameloop);
             return;
         }
@@ -56,70 +56,77 @@ var gameModule = (function () {
         snake.unshift({x: snakeX, y: snakeY});
 
         if (snakeX === apple.x && snakeY === apple.y) {
+            alert('score was increased');
             score++;
-            drawModule.drawScore(score);
+            renderModule.drawScore();
             generateApple();
         } else {
-            var last = snake.pop();
-            drawModule.drawBlock(last.x, last.y);
+            let last = snake.pop();
+            renderModule.drawCleaningBlock(last.x, last.y);
         }
 
-        drawModule.drawSnakeBlock(snakeX, snakeY, SNAKE_BLOCK_TYPE_HEAD);
-        drawModule.drawSnakeBlock(snake[1].x, snake[1].y, SNAKE_BLOCK_TYPE_BODY);
+        renderModule.drawSnakeBlock(snakeX, snakeY);
+        renderModule.drawSnakeBlock(snake[1].x, snake[1].y);
         currentDirection = direction;
 
-        drawModule.drawApple(apple.x, apple.y);
-    };
+        renderModule.drawApple(apple.x, apple.y);
+    }
 
-    var checkCrash = function (x, y) {
-        for (var i in snake) {
+    function saveResult () {
+        // VK.callMethod("showShareBox", APP_URL, APP_SHARE_PHOTO_LINK, "im");
+        submitScore(score);
+        VK.callMethod("showLeaderboardBox", score);
+    }
+
+    function checkSnakeCollision (x, y) {
+        for (let i in snake) {
             if (snake[i].x === x && snake[i].y === y) {
                 return true;
             }
         }
         return false;
-    };
+    }
 
-    var createSnake = function () {
-        for (var i = LENGTH - 1; i >= 0; i--) {
+    function createSnake () {
+        for (let i = INITIAL_SNAKE_LENGTH - 1; i >= 0; i--) {
             snake.push({x: i, y: 0});
         }
-    };
+    }
 
-    var getRandomInt = function (min, max) {
+    function getRandomInt (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
-    };
+    }
 
-    var generateApple = function () {
+    function generateApple () {
         apple = {
             x: getRandomInt(0, width / blockSize),
             y: getRandomInt(0, height / blockSize)
         };
 
-        while (checkCrash(apple.x, apple.y)) {
+        while (checkSnakeCollision(apple.x, apple.y)) {
             apple = {
                 x: getRandomInt(0, width / blockSize),
                 y: getRandomInt(0, height / blockSize)
             };
         }
-    };
+    }
 
-    var setDirection = function (newDirection) {
+    function setDirection (newDirection) {
         direction = newDirection;
-    };
+    }
 
-    var getCurrentDirection = function () {
+    function getCurrentDirection () {
         return currentDirection;
-    };
+    }
 
-    var start = function () {
-        updateProperties();
+    function start () {
+        initProperties();
         createSnake();
         generateApple();
-        drawModule.drawGameField();
-        drawModule.drawScore(score);
+        renderModule.drawGameField();
+        renderModule.drawScore();
         gameloop = setInterval(game, GAME_INTERVAL);
-    };
+    }
 
     return {
         start: start,
